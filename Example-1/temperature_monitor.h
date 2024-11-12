@@ -11,7 +11,7 @@ struct TemperatureData {
 
 TemperatureData readTemperature();  // Returning a value of type TemperatureData
 
-void updateLED(TemperatureData data);  // No return value
+void updateLED(TemperatureData data, float threshold);  // No return value
 
 bool isHumidityAboveThreshold(TemperatureData data, float threshold);
 
