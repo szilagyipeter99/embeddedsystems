@@ -1,29 +1,38 @@
 # Embedded systems
 
-This repository contains the examples discussed in the Image processing practices. Each folder includes the source code for these exercises. Explanations and figures are available on the course website.
+This repository contains the examples created in the Embedded systems practices. Each folder includes the source code for an ESP32 project written in the Arduino IDE. 
 
-Throughout the examples, we use several Python libraries that extend the functionality of vanilla Python, simplifying calculations and enabling us to import and manipulate images effectively. Later in the semester, we’ll also use the Keras library to build machine learning models.
+### Required steps before testing examples:
 
-### The following libraries are used:
-- NumPy
-- Matplotlib
-- PIL (Pillow)
-- Keras (+ TensorFlow)
+1. Install Arduino IDE:
+[Click here](https://docs.arduino.cc/software/ide/)
+
+2. Install Arduino-ESP32 support: 
+[Click here](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html#installing-using-arduino-ide)
+
+3. Create separate folders for each example
 
 ### Recommended folder structure:
 
-Python files can be stored in folders grouped by lecture topics, as organized in this repository. However, for beginners, it is often recommended to place all example code files directly in the root of the project. This way, the project structure is simplified, with only a single folder dedicated to all resources (images, sequences, etc.), making navigation easier.
+Python files
 
 ```bash
-improc-folder
-├── resources-folder
-│   ├── resource1.jpg
-│   ├── resource2.png
+embed-examples-folder
+├── example-1
+│   ├── main.ino
+│   ├── something.h
+│   ├── something.cpp
 │   └── ...
-├── code1.py
-├── code2.py
+├── example-2
+│   ├── main.ino
+│   └── ...
 └── ...
 ```
+
+### If your old code is cached:
+
+Change the verbosity level in the __Core Debug Level__ settings, this will force a clean.
+
 
 ### Course website: [HU](https://szilagyipeti.hu/embedded/content.html) | [EN](https://szilagyipeti.hu/embedded/content-en.html)
 
