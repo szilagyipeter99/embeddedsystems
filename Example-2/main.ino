@@ -1,4 +1,4 @@
-uint8_t someValue = 0;  // Could be 'bool'
+uint8_t someValue = 0;
 
 void giveRandomValue(uint8_t *valPtr) {
   *valPtr = random(50, 200);
