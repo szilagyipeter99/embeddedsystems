@@ -19,13 +19,15 @@ By creating a separate folder for every example, the IDE will import all the fil
 ```bash
 embed-examples-folder
 ├── example-1
-│   ├── main.ino
-│   ├── something.h
-│   ├── something.cpp
-│   └── ...
+│   ├── main
+│   │   ├── main.ino
+│   │   ├── something.h
+│   │   ├── something.cpp
+│   │   └── ...
 ├── example-2
-│   ├── main.ino
-│   └── ...
+│   ├── main
+│   │   └── main.ino
+│   │   └── ...
 └── ...
 ```
 
