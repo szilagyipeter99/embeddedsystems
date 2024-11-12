@@ -1,5 +1,6 @@
 #include "temperature_monitor.h"
 
+#define COLD_THRESHOLD 20.0
 #define HUMIDITY_THRESHOLD 55.0
 
 void setup() {
@@ -24,7 +25,7 @@ void loop() {
   Serial.print(data.humidity);
   Serial.println(" %");
 
-  updateLED(data);
+  updateLED(data, COLD_THRESHOLD);
 
   if (isHumidityAboveThreshold(data, HUMIDITY_THRESHOLD)) {
     Serial.println("Humidity too high!");
