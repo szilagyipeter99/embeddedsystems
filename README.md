@@ -14,7 +14,7 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Recommended folder structure:
 
-Python files
+By creating a separate folder for every example, the IDE will import all the files by itself. Simply open __main.ino__ to view a project.
 
 ```bash
 embed-examples-folder
@@ -31,7 +31,7 @@ embed-examples-folder
 
 ### If your old code is cached:
 
-Change the verbosity level in the __Core Debug Level__ settings, this will force a clean.
+Sometimes the IDE will cache the currect code and will try to compile and upload the old cached version. If you suspect that this has happened, change the verbosity level in the __Core Debug Level__ settings, this will force a clean.
 
 
 ### Course website: [HU](https://szilagyipeti.hu/embedded/content.html) | [EN](https://szilagyipeti.hu/embedded/content-en.html)
