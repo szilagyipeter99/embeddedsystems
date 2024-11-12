@@ -3,8 +3,6 @@
 #define DEVBOARD_LED_PIN 38
 #define LED_BRIGHTNESS 64
 
-#define COLD_THRESHOLD 20.0
-
 TemperatureData readTemperature() {
   TemperatureData data;
   data.temperature = random(15, 30) + 1.0 / random(1, 10);  // Wouldn't work with 1 / ...
@@ -12,9 +10,9 @@ TemperatureData readTemperature() {
   return data;
 }
 
-void updateLED(TemperatureData data) {
+void updateLED(TemperatureData data, float threshold) {
 
-  if (data.temperature >= COLD_THRESHOLD) {
+  if (data.temperature >= threshold) {
     rgbLedWrite(DEVBOARD_LED_PIN, 0, LED_BRIGHTNESS, 0);
     Serial.println("Normal temperature.");
   } else {
