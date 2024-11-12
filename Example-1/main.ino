@@ -1,6 +1,6 @@
 #include "temperature_monitor.h"
 
-#define HUMIDITY_THRESHOLD 28.0
+#define HUMIDITY_THRESHOLD 55.0
 
 void setup() {
 
