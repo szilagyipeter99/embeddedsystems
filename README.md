@@ -33,7 +33,7 @@ embed-examples-folder
 
 ### If your old code is cached:
 
-Sometimes the IDE will cache the currect code and will try to compile and upload the old cached version. If this has happened, change the verbosity level in the __Core Debug Level__ settings, this will force a clean.
+Sometimes the IDE will cache the code and even after changes, it will try to compile and upload the old cached version. If this has happened, change the verbosity level in the __Core Debug Level__ settings, this will force a clean.
 
 
 ### Course website: [HU](https://szilagyipeti.hu/embedded/content.html) | [EN](https://szilagyipeti.hu/embedded/content-en.html)
