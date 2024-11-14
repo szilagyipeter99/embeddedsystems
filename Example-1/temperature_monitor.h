@@ -2,7 +2,7 @@
 #define TEMPERATURE_MONITOR_H
 
 #include <stdint.h>   // To use fixed-width integer types
-#include <Arduino.h>  // To use rgbLedWritem(), Serial.println() ...
+#include <Arduino.h>  // To use rgbLedWrite(), Serial.println() ...
 
 struct TemperatureData {
   float temperature;
