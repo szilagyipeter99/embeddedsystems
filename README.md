@@ -1,6 +1,6 @@
 # Embedded systems
 
-This repository contains the examples created in the Embedded systems practices. Each folder includes the source code for an ESP32 project written in the Arduino IDE. 
+This repository contains the examples created in the Embedded systems practices. Each folder includes the source code for an ESP32 project written in the Arduino IDE, tested on the S3-DevKitC-1U-N8R8.
 
 ### Required steps before testing examples:
 
