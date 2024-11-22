@@ -7,7 +7,7 @@ This repository contains the examples created in the Embedded systems practices.
 1. Install Arduino IDE:
 [Click here](https://docs.arduino.cc/software/ide/)
 
-2. Install Arduino-ESP32 support: 
+2. Install Arduino-ESP32 Core: 
 [Click here](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html#installing-using-arduino-ide)
 
 3. Create separate folders for each example
