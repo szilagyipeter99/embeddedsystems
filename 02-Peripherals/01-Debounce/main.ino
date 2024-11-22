@@ -21,13 +21,16 @@ void loop() {
   */
 
   if (!digitalRead(BTN_PIN)) {
-    delay(50);
+
+    delay(50);  // Blocking behaviour, FreeRTOS will solve this problem
+
     if (!digitalRead(BTN_PIN)) {
-      ledState = ledState ^ 1;
+      ledState = ledState ^ 1;  // (^): Bitwise XOR operator to toggle state (If 0 Then 1, If 1 Then 0)
       digitalWrite(LED_PIN, ledState);
-      while (!digitalRead(BTN_PIN));
     }
   }
 
-  delay(1);
+  delay(1);  // Helps the task scheduler by yielding control to other tasks
 }
+
+// Optional homework: Implement the distinction of a normal press, long press, double press
