@@ -24,7 +24,7 @@ void loop() {
   }
   */
 
-  if (btnState != prevBtnState) { // '&& btnState == 0' is not here, so bouncing is resolved on the release, too
+  if (btnState != prevBtnState) {  // '&& btnState == 0' is not here, so bouncing is resolved on the release, too
 
     delay(50);  // Blocking behaviour, FreeRTOS will solve this problem
 
