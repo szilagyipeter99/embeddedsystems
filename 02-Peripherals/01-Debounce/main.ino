@@ -2,6 +2,8 @@
 #define BTN_PIN 2
 
 uint8_t ledState = 0;
+uint8_t btnState = 1;
+uint8_t prevBtnState = 1;
 
 void setup() {
 
@@ -13,24 +15,30 @@ void setup() {
 
 void loop() {
 
+  btnState = digitalRead(BTN_PIN);
+
   /*
-  if (!digitalRead(BTN_PIN)) {
+  if (btnState != prevBtnState) {
     ledState = ledState ^ 1;
     digitalWrite(LED_PIN, ledState);
   }
   */
 
-  if (!digitalRead(BTN_PIN)) {
+  if (btnState != prevBtnState) { // '&& btnState == 0' is not checked here, so bouncing is resolved on the release, too
 
     delay(50);  // Blocking behaviour, FreeRTOS will solve this problem
 
-    if (!digitalRead(BTN_PIN)) {
+    btnState = digitalRead(BTN_PIN);
+
+    if (btnState != prevBtnState && btnState == 0) {
       ledState = ledState ^ 1;  // (^): Bitwise XOR operator to toggle state (If 0 Then 1, If 1 Then 0)
       digitalWrite(LED_PIN, ledState);
     }
   }
 
+  prevBtnState = btnState;
+
   delay(1);  // Helps the task scheduler by yielding control to other tasks
 }
 
-// Optional homework: Implement the distinction of a normal press, long press, double press
+// Optional homework: Implement the handling of a normal press, long press, double press
