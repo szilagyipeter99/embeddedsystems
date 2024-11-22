@@ -18,7 +18,7 @@ void loop() {
   btnState = digitalRead(BTN_PIN);
 
   /*
-  if (btnState != prevBtnState) {
+  if (btnState != prevBtnState && btnState == 0) {
     ledState = ledState ^ 1;
     digitalWrite(LED_PIN, ledState);
   }
