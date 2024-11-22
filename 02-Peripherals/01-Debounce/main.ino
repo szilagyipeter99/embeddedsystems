@@ -1,17 +1,25 @@
-#define LED    12
-#define BUTTON 2
+#define LED_PIN 12
+#define BTN_PIN 2
 
-uint8_t stateLED = 0;
+uint8_t ledState = 0;
 
 void setup() {
-    pinMode(LED, OUTPUT);
-    pinMode(BUTTON,INPUT_PULLUP);
+    
+    pinMode(LED_PIN, OUTPUT);
+    pinMode(BTN_PIN,INPUT_PULLUP);
+
+    digitalWrite(LED_PIN, 0);
 }
 
 void loop() {
 
-   if(!digitalRead(BUTTON)){
-     stateLED = stateLED^1;
-    digitalWrite(LED,stateLED);
-  }
+    if (!digitalRead(BTN_PIN)) {  
+        delay(50);            
+        if (!digitalRead(BTN_PIN)) { 
+            ledState = ledState ^ 1; 
+            digitalWrite(LED_PIN, ledState);
+            while (!digitalRead(BUTTON)); 
+        }
+    }
+    
 }
