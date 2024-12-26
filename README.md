@@ -35,7 +35,6 @@ embed-examples-folder
 
 Sometimes the IDE will cache the code and even after changes, it will try to compile and upload the old cached version. If this has happened, change the verbosity level in the __Core Debug Level__ settings, this will force a clean.
 
-
-### Course website: [HU](https://szilagyipeti.hu/embedded/content.html) | [EN](https://szilagyipeti.hu/embedded/content-en.html)
+### For your use and inspiration
 
 All materials are designed for Mechatronics Engineering students at the University of Debrecen and were created by Péter Szilágyi. Feel free to share, copy, or modify any part of the materials to your heart's content.
