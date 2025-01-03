@@ -14,7 +14,7 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Recommended folder structure:
 
-By creating a separate folder for every example, the IDE will import all the files by itself. Simply open __example-X.ino__ to view a project. Creating files is possible inside the IDE or using the Terminal. An __example-X__ folder is also required!
+By creating a separate folder for every example, the IDE will import all the files by itself. Simply open __example-X.ino__ to view a project. Creating files is possible inside the IDE or using the Terminal. The IDE requires files to be in a folder with the same name, so a __example-X__ folder is also needed!
 
 ```bash
 embed-examples-folder
