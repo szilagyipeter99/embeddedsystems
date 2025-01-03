@@ -14,7 +14,7 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Recommended folder structure:
 
-The IDE requires the __.ino__ files to be in a folder with the same name, so a __example-X__ folder is needed for every __example-X.ino__ file!
+The IDE requires the __.ino__ files to be in a folder with the same name, so a __example-X__ folder is needed for every __example-X.ino__ file! Additional __.h__ and __.cpp__ files are automatically imported.
 
 ```bash
 embed-examples-folder
