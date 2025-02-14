@@ -1,5 +1,5 @@
 ### Suggested order of examples:
 
 1. MultipleFiles
-2. PointerOptionA
-3. PointerOptionB
+2. PointerA
+3. PointerB
