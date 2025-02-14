@@ -1,6 +1,6 @@
 #include "temperature_monitor.h"
 
-#define DEVBOARD_LED_PIN 38
+#define DEVBOARD_LED_PIN 8
 #define LED_BRIGHTNESS 64
 
 TemperatureData readTemperature() {

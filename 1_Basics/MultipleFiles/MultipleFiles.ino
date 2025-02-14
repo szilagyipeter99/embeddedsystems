@@ -8,9 +8,9 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Starting...");
   // Sizes in bytes (4 byte = 32 bit)
-  Serial.println(sizeof(int));
-  Serial.println(sizeof(int8_t));
-  Serial.println(sizeof(float));
+  Serial.println(sizeof(int));     // 4
+  Serial.println(sizeof(int8_t));  // 1
+  Serial.println(sizeof(float));   // 4
 }
 
 void loop() {

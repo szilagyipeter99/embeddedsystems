@@ -1,3 +1,4 @@
+// Include guard to prevent multiple inclusions
 #ifndef TEMPERATURE_MONITOR_H
 #define TEMPERATURE_MONITOR_H
 
