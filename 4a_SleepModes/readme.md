@@ -1,4 +1,7 @@
 ### Suggested order of examples:
 
-1. Somethhing
-2. Something else
+1. DeepSleepTimer
+2. DeepSleepExt0
+3. LightSleepTimer
+4. LightSleepGPIO
+5. LightSleepUART
