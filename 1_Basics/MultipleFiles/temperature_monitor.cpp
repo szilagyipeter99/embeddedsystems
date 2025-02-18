@@ -26,5 +26,5 @@ bool isHumidityAboveThreshold(TemperatureData data, float threshold) {
 }
 
 int8_t getRoundedTemperature(TemperatureData data) {
-  return static_cast<int8_t>(data.temperature + 0.5f);  // Could also be just 0.5
+  return static_cast<int8_t>(data.temperature + 0.5f);  // 0.5 works, but takes more bytes (double)
 }
