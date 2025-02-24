@@ -3,7 +3,6 @@
 1. Debounce
 2. ExtInterrupt
 3. TimerInterrupt
-4. SPI
-5. I2C
-6. ADC
-7. PWM
+4. I2C-master & I2C-slave
+5. ADC
+6. PWM
