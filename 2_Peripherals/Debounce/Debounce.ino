@@ -24,7 +24,7 @@ void loop() {
 
   if (btnState != prevBtnState) {  // '&& btnState == 0' is not here, so bouncing is resolved on the release, too
 
-    delay(50);  // Blocking behaviour, FreeRTOS will solve this problem
+    delay(5);  // Blocking behaviour, FreeRTOS will solve this problem
 
     btnState = digitalRead(BTN_PIN);
 
@@ -35,7 +35,6 @@ void loop() {
   }
   prevBtnState = btnState;
 
-  delay(1);  // Helps the task scheduler by yielding control to other tasks
 }
 
 // TODO: Implement the handling of a normal press, long press, double press
