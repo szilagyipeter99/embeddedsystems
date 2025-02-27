@@ -32,7 +32,7 @@ void setup() {
 
 void loop() {
 
-  // This is executed as soon as 'firstBlink' is True the CPU is available
+  // This is executed as soon as 'firstBlink' is true and the CPU is available
   if (firstBlink) {
     digitalWrite(LED_1_PIN, 1);
     delay(500);
