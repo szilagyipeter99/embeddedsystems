@@ -3,8 +3,8 @@
 1. SimpleBlink
 2. StackSizeCalc
 3. SuspendResume
-4. BinarySemaphore
-5. BinarySemaphoreCont
+4. BinarySemaphoreA
+5. BinarySemaphoreB
 6. BinarySemaphoreISR
 7. CountingSemaphore
 8. Mutex
