@@ -5,7 +5,6 @@
 3. BinarySemaphoreA
 4. BinarySemaphoreB
 5. BinarySemaphoreISR
-6. CountingSemaphore
-7. Mutex
-8. PassParamsOnce
-9. PassParamsWithQueue
+6. Mutex
+7. PassParamsOnce
+8. PassParamsWithQueue
