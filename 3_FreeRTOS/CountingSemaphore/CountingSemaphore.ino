@@ -1,71 +1,78 @@
 #define LED1 25
 #define LED2 26
-SemaphoreHandle_t countingSem; // Create handle 
-SemaphoreHandle_t countingSem2;
+#define LED3 17
+#define LED4 18
+SemaphoreHandle_t countingSem; // Create semaphore handle
 void setup() {
-    Serial.begin(115200);
-    pinMode(LED1, OUTPUT);
-    pinMode(LED2, OUTPUT);
-    countingSem = xSemaphoreCreateCounting(1,1); // Create counting semaphore
-    countingSem2 = xSemaphoreCreateCounting(4,4); // Create second counting semaphore  
-    Serial.print("countingSem2 left: ");
-    Serial.println(uxSemaphoreGetCount(countingSem2));
-    
-    xTaskCreate(
-        blink1,      // Function name of the task
-        "Blink 1",   // Name of the task (e.g. for debugging)
-        2048,        // Stack size (bytes)
-        NULL,        // Parameter to pass
-        1,           // Task priority
-        NULL         // Task handle
-    );
-    
-    xTaskCreate(
-        blink2,     // Function name of the task
-        "Blink 2",  // Name of the task (e.g. for debugging)
-        2048,       // Stack size (bytes)
-        NULL,       // Parameter to pass
-        1,          // Task priority
-        NULL        // Task handle
-    );
+    countingSem = xSemaphoreCreateCounting(2,2); // Create counting semaphore
+   
+    xTaskCreate(blink1, "Blink 1", 2048, NULL, 1, NULL); 
+    xTaskCreate(blink2, "Blink 2", 2048, NULL, 1, NULL);
+    xTaskCreate(blink3, "Blink 3", 2048, NULL, 1, NULL);
+    xTaskCreate(blink4, "Blink 4", 2048, NULL, 1, NULL);   
 }
-void blink1(void *pvParameters){
+void blink1(void *parameter){
+    pinMode(LED1, OUTPUT);
     while(1){
-        /* Take the semaphore, no semaphore (countingSem) will be left */
-        xSemaphoreTake(countingSem, portMAX_DELAY);
-        /* Take the semaphore countingSem2 if still available */
-        xSemaphoreTake(countingSem2, portMAX_DELAY);
-        Serial.print("countingSem2 left: ");
-        Serial.println(uxSemaphoreGetCount(countingSem2));
-        
+        /* Take a semaphore if available */
+        xSemaphoreTake(countingSem, portMAX_DELAY); 
         for(int i=0; i<10; i++){
             digitalWrite(LED1, HIGH);
-            delay(250);
+            delay(250); 
             digitalWrite(LED1, LOW);
             delay(250); 
         }
-        /* Give only semaphore countingSem */
+        /* Release the semaphore */
         xSemaphoreGive(countingSem);
-        delay(200); // Short delay is needed!
+        delay(200); // Short delay is needed
     }
 }
-void blink2(void *pvParameters){
+void blink2(void *parameter){
+    pinMode(LED2, OUTPUT);
     while(1){
-        /* Take the semaphore, no semaphore (countingSem) will be left */
+        /* Take a semaphore if available */
         xSemaphoreTake(countingSem, portMAX_DELAY);
-        /* Take the semaphore countingSem2 if still available */
-        xSemaphoreTake(countingSem2, portMAX_DELAY);
-        Serial.print("countingSem2 left: ");
-        Serial.println(uxSemaphoreGetCount(countingSem2));
         for(int i=0; i<10; i++){
             digitalWrite(LED2, HIGH);
             delay(333);
             digitalWrite(LED2, LOW);
             delay(333);   
         }
-        /* Give only semaphore countingSem */
+        /* Release the semaphore */
         xSemaphoreGive(countingSem);
-        delay(200);  // Short delay is needed!
+        delay(200); // Short delay is needed
+    }
+}
+void blink3(void *parameter){
+    pinMode(LED3, OUTPUT);
+    while(1){
+        /* Take a semaphore if available */
+        xSemaphoreTake(countingSem, portMAX_DELAY);
+        for(int i=0; i<10; i++){
+            digitalWrite(LED3, HIGH);
+            delay(123);//delay(333);
+            digitalWrite(LED3, LOW);
+            delay(123);   
+        }
+        /* Release the semaphore */
+        xSemaphoreGive(countingSem);
+        delay(200); // Short delay is needed
+    }
+}
+void blink4(void *parameter){
+    pinMode(LED4, OUTPUT);
+    while(1){
+        /* Take a semaphore if available */
+        xSemaphoreTake(countingSem, portMAX_DELAY);
+        for(int i=0; i<10; i++){
+            digitalWrite(LED4, HIGH);
+            delay(444);//delay(333);
+            digitalWrite(LED4, LOW);
+            delay(444);   
+        }
+        /* Release the semaphore */
+        xSemaphoreGive(countingSem);
+        delay(200); // Short delay is needed
     }
 }
 void loop(){}
