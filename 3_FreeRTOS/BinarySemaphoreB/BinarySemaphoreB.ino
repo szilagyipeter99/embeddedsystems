@@ -1,55 +1,47 @@
-#define LED1 25
-#define LED2 26
-SemaphoreHandle_t sem;  // Create semaphore handle 
+#define LED_1_PIN 4
+#define LED_2_PIN 5
+
+SemaphoreHandle_t mySem;  // Create semaphore handle
+
 void setup() {
-    sem = xSemaphoreCreateBinary(); // Create binary semaphore 
-         
-    xTaskCreate(
-        blink1,      // Function name of the task
-        "Blink 1",   // Name of the task (e.g. for debugging)
-        2048,        // Stack size (bytes)
-        NULL,        // Parameter to pass
-        1,           // Task priority
-        NULL         // Task handle
-    );
-    xTaskCreate(
-        blink2,     // Function name of the task
-        "Blink 2",  // Name of the task (e.g. for debugging)
-        2048,       // Stack size (bytes)
-        NULL,       // Parameter to pass
-        1,          // Task priority
-        NULL        // Task handle
-    );
+
+  pinMode(LED_1_PIN, OUTPUT);
+  pinMode(LED_2_PIN, OUTPUT);
+
+  mySem = xSemaphoreCreateBinary();
+  xTaskCreate(blinkLED1, "Blink #1", 2048, NULL, 1, NULL);
+  xTaskCreate(blinkLED2, "Blink #2", 2048, NULL, 1, NULL);
 }
-void blink1(void *pvParameters){
-    pinMode(LED1, OUTPUT);
-    while(1){
-       for(int i=0; i<5; i++){
-            digitalWrite(LED1, HIGH);
-            delay(250);
-            digitalWrite(LED1, LOW);
-            delay(250);
-        }
-        xSemaphoreGive(sem); // Release semaphore
-        for(int i=0; i<5; i++){
-            digitalWrite(LED1, HIGH);
-            delay(250);
-            digitalWrite(LED1, LOW);
-            delay(250);
-        }
-        delay(2000);
+
+void blinkLED1(void *param) {
+  while (1) {
+    for (int i = 0; i < 5; i++) {
+      digitalWrite(LED_1_PIN, 1);
+      vTaskDelay(250 / portTICK_PERIOD_MS);
+      digitalWrite(LED_1_PIN, 0);
+      vTaskDelay(250 / portTICK_PERIOD_MS);
     }
-}
-void blink2(void *pvParameters){
-    pinMode(LED2, OUTPUT);
-    while(1){
-        xSemaphoreTake(sem,portMAX_DELAY); // take semaphore
-        for(int i=0; i<10; i++){
-            digitalWrite(LED2, HIGH);
-            delay(50);
-            digitalWrite(LED2, LOW);
-            delay(50);   
-        }
+    xSemaphoreGive(mySem);  // Release semaphore
+    for (int i = 0; i < 5; i++) {
+      digitalWrite(LED_1_PIN, 1);
+      vTaskDelay(125 / portTICK_PERIOD_MS);
+      digitalWrite(LED_1_PIN, 0);
+      vTaskDelay(125 / portTICK_PERIOD_MS);
     }
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
+  }
 }
-void loop(){}
+
+void blinkLED2(void *param) {
+  while (1) {
+    xSemaphoreTake(mySem, portMAX_DELAY);
+    for (int i = 0; i < 10; i++) {
+      digitalWrite(LED_2_PIN, 1);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      digitalWrite(LED_2_PIN, 0);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+    }
+  }
+}
+
+void loop() {}
