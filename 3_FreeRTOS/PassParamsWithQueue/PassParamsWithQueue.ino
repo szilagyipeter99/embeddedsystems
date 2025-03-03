@@ -1,40 +1,41 @@
-QueueHandle_t queue1; // Create handle
+QueueHandle_t myQueue;  // Queue handle
+
 void setup() {
-    Serial.begin(115200);
-    queue1 = xQueueCreate(1, sizeof(unsigned long));  // Create queue
-  
-    xTaskCreate(
-        measureTime,    // Function name of the task
-        "Measure Time", // Name of the task (e.g. for debugging)
-        2048,           // Stack size (bytes)
-        NULL,           // Parameter to pass
-        1,              // Task priority
-        NULL            // Task handle
-    );
-    xTaskCreate(
-        printTime,    // Function name of the task
-        "Print time", // Name of the task (e.g. for debugging)
-        2048,         // Stack size (bytes)
-        NULL,         // Parameter to pass
-        1,            // Task priority
-        NULL          // Task handle
-    );
+  Serial.begin(115200);
+
+  myQueue = xQueueCreate(5, sizeof(int));  // Can hold 5 integers (with default int size)
+  xTaskCreate(sendMsg, "Send message", 2048, NULL, 1, NULL);
+  xTaskCreate(reciveMsg, "Receive message", 2048, NULL, 1, NULL);
 }
-void measureTime(void *pvParameters){
-    while(1){
-        static unsigned long startTime = millis();
-        unsigned long timeSinceStart = (millis() - startTime)/1000;
-        xQueueSend(queue1, &timeSinceStart, 0);  // Send queue
-        delay(100);
+
+void sendMsg(void *param) {
+  int cntr = 0;
+  while (1) {
+    cntr++;
+    // Wait for 0 ticks, then try to get a place in the queue
+    if (xQueueSend(myQueue, &cntr, 0) == pdTRUE) {
+      Serial.print("Sent: ");
+      Serial.println(cntr);
     }
-}
-void printTime(void *pvParameters){
-    while(1){
-        unsigned long buf;
-        xQueueReceive(queue1, &buf, 0); // Receive queue
-        Serial.print("Time since start: ");
-        Serial.println(buf);
-        delay(2000);
+    // New data could not be added to the queue
+    else {
+      Serial.print("Queue full, ");
+      Serial.print(cntr);
+      Serial.println(" is not in the queue!");
     }
+    vTaskDelay(1000 / portTICK_PERIOD_MS);  // Try sending every 1s
+  }
 }
-void loop(){}
+
+void reciveMsg(void *param) {
+  int receivedValue;
+  while (1) {
+    // Take an element from the queue
+    xQueueReceive(myQueue, &receivedValue, portMAX_DELAY);
+    Serial.print("Received: ");
+    Serial.println(receivedValue);
+    vTaskDelay(2250 / portTICK_PERIOD_MS);  // Simulate long processing time
+  }
+}
+
+void loop() {}
