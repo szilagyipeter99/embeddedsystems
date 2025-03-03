@@ -1,67 +1,61 @@
-#define LED1 25
-#define LED2 26
-#define INT_PIN_1 15
-#define INT_PIN_2 16
-SemaphoreHandle_t interruptSemaphore1; // Create semaphore handle
-SemaphoreHandle_t interruptSemaphore2;
-void IRAM_ATTR keyISR1() {   // ISR definition
-    xSemaphoreGiveFromISR(interruptSemaphore1, NULL);
+#define LED_1_PIN 4
+#define LED_2_PIN 5
+#define BTN_1_PIN 10
+#define BTN_2_PIN 11
+
+SemaphoreHandle_t mySem1;
+SemaphoreHandle_t mySem2;
+
+void IRAM_ATTR handleFirstISR() {
+  xSemaphoreGiveFromISR(mySem1, NULL);
 }
-void IRAM_ATTR keyISR2() {
-    xSemaphoreGiveFromISR(interruptSemaphore2, NULL);
+void IRAM_ATTR handleSecondISR() {
+  xSemaphoreGiveFromISR(mySem2, NULL);
 }
 void setup() {
-    interruptSemaphore1 = xSemaphoreCreateBinary(); // Create semaphore
-    interruptSemaphore2 = xSemaphoreCreateBinary();
-    xTaskCreate(
-        blink1,      // Function name of the task
-        "Blink 1",   // Name of the task (e.g. for debugging)
-        2048,        // Stack size (bytes)
-        NULL,        // Parameter to pass
-        1,           // Task priority
-        NULL         // Task handle
-    );
-    xTaskCreate(
-        blink2,      // Function name of the task
-        "Blink 2",   // Name of the task (e.g. for debugging)
-        2048,        // Stack size (bytes)
-        NULL,        // Parameter to pass
-        1,           // Task priority
-        NULL         // Task handle
-    );
-    if (interruptSemaphore1 != NULL) {
-        attachInterrupt(digitalPinToInterrupt(INT_PIN_1), keyISR1, FALLING);
-    }
-    if (interruptSemaphore2 != NULL) {
-        attachInterrupt(digitalPinToInterrupt(INT_PIN_2), keyISR2, FALLING);
-    }
+
+  pinMode(LED_1_PIN, OUTPUT);
+  pinMode(BTN_1_PIN, INPUT_PULLUP);
+  pinMode(LED_2_PIN, OUTPUT);
+  pinMode(BTN_2_PIN, INPUT_PULLUP);
+
+  mySem1 = xSemaphoreCreateBinary();
+  mySem2 = xSemaphoreCreateBinary();
+  xTaskCreate(blinkLED1, "Blink #1", 2048, NULL, 1, NULL);
+  xTaskCreate(blinkLED2, "Blink #2", 2048, NULL, 1, NULL);
+  // Wait for the semaphores to be created
+  if (mySem1 != NULL) {
+    attachInterrupt(BTN_1_PIN, handleFirstISR, FALLING);
+  }
+  if (mySem2 != NULL) {
+    attachInterrupt(BTN_2_PIN, handleSecondISR, FALLING);
+  }
 }
-void blink1(void *pvParameters){
-    pinMode(LED1, OUTPUT);
-    pinMode(INT_PIN_1, INPUT_PULLUP);
-    while(1){
-        if (xSemaphoreTake(interruptSemaphore1, portMAX_DELAY)) {
-            for(int i=0; i<10; i++){
-                digitalWrite(LED1, HIGH);
-                delay(50); // Delay for Tasks 
-                digitalWrite(LED1, LOW);
-                delay(50);
-            }
-        }
+
+void blinkLED1(void *param) {
+  while (1) {
+    if (xSemaphoreTake(mySem1, portMAX_DELAY)) {
+      for (int i = 0; i < 10; i++) {
+        digitalWrite(LED_1_PIN, 1);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+        digitalWrite(LED_1_PIN, 0);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+      }
     }
+  }
 }
-void blink2(void *pvParameters){
-    pinMode(LED2, OUTPUT);
-    pinMode(INT_PIN_2, INPUT_PULLUP);
-    while(1){
-        if (xSemaphoreTake(interruptSemaphore2, portMAX_DELAY)) {
-            for(int i=0; i<10; i++){
-                digitalWrite(LED2, HIGH);
-                delay(50);  
-                digitalWrite(LED2, LOW);
-                delay(50);
-            }
-        }
+
+void blinkLED2(void *param) {
+  while (1) {
+    if (xSemaphoreTake(mySem2, portMAX_DELAY)) {
+      for (int i = 0; i < 10; i++) {
+        digitalWrite(LED_2_PIN, 1);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+        digitalWrite(LED_2_PIN, 0);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
+      }
     }
+  }
 }
-void loop(){}
+
+void loop() {}
