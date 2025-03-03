@@ -1,12 +1,11 @@
 ### Suggested order of examples:
 
 1. SimpleBlink
-2. StackSizeCalc
-3. SuspendResume
-4. BinarySemaphoreA
-5. BinarySemaphoreB
-6. BinarySemaphoreISR
-7. CountingSemaphore
-8. Mutex
-9. PassParamsOnce
-10. PassParamsWithQueue
+2. SuspendResume
+3. BinarySemaphoreA
+4. BinarySemaphoreB
+5. BinarySemaphoreISR
+6. CountingSemaphore
+7. Mutex
+8. PassParamsOnce
+9. PassParamsWithQueue
