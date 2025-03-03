@@ -1,47 +1,30 @@
-#define LED1 25
-#define LED2 26
-struct genericBlink{
-    int pin;
-    int period;
+#define LED_1_PIN 4
+#define LED_2_PIN 5
+
+struct blinkStructure {
+  int pin;
+  int interval;
 };
-genericBlink ledBlink1 = {LED1, 500};
-genericBlink ledBlink2 = {LED2, 333};
+
+blinkStructure blinkLED1 = { LED_1_PIN, 500 };
+blinkStructure blinkLED2 = { LED_2_PIN, 750 };
+
 void setup() {
-    xTaskCreate(
-        &blink,      // Function name of the task
-        "Blink 1",   // Name of the task (e.g. for debugging)
-        2048,        // Stack size (bytes)
-        (void*) &ledBlink1,  // Parameter to pass
-        1,           // Task priority
-        NULL         // Task handle
-    );
-    xTaskCreate(
-        &blink,      // Function name of the task
-        "Blink 2",   // Name of the task (e.g. for debugging)
-        2048,        // Stack size (bytes)
-        (void*) &ledBlink2,  // Parameter to pass
-        1,           // Task priority
-        NULL         // Task handle
-    );
+  // xTaskCreate() expects the parameter to be of type 'void *'
+  xTaskCreate(&setupBlink, "Blink #1", 2048, (void *)&blinkLED1, 1, NULL);
+  xTaskCreate(&setupBlink, "Blink #2", 2048, (void *)&blinkLED2, 1, NULL);
 }
-void blink(void *ledx){
-    genericBlink *ledBlink = (genericBlink *) ledx;
-    pinMode(ledBlink->pin, OUTPUT);
-    while(1){
-        digitalWrite(ledBlink->pin, HIGH);
-        delay(ledBlink->period);
-        digitalWrite(ledBlink->pin, LOW);
-        delay(ledBlink->period);
-    }
+
+void setupBlink(void *someBlinkStruct) {
+  // Cast back the input parameter from (void *) to (blinkStructure *)
+  blinkStructure *myBlink = (blinkStructure *)someBlinkStruct;
+  pinMode(myBlink->pin, OUTPUT);
+  while (1) {
+    digitalWrite(myBlink->pin, HIGH);  // Would be 'myBlink.pin' if it was not a pointer
+    vTaskDelay(myBlink->interval / portTICK_PERIOD_MS);
+    digitalWrite(myBlink->pin, LOW);
+    vTaskDelay(myBlink->interval / portTICK_PERIOD_MS);
+  }
 }
-// void blink(void *ledx){
-//     genericBlink ledBlink = *(genericBlink *) ledx;
-//     pinMode(ledBlink.pin, OUTPUT);
-//     while(1){
-//         digitalWrite(ledBlink.pin, HIGH);
-//         delay(ledBlink.period);
-//         digitalWrite(ledBlink.pin, LOW);
-//         delay(ledBlink.period);
-//     }
-// }
-void loop(){}
+
+void loop() {}
