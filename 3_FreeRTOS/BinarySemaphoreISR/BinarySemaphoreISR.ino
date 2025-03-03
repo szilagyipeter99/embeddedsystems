@@ -34,28 +34,28 @@ void setup() {
 
 void blinkLED1(void *param) {
   while (1) {
-    if (xSemaphoreTake(mySem1, portMAX_DELAY)) {
-      for (int i = 0; i < 10; i++) {
-        digitalWrite(LED_1_PIN, 1);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-        digitalWrite(LED_1_PIN, 0);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-      }
+    xSemaphoreTake(mySem1, portMAX_DELAY);
+    for (int i = 0; i < 10; i++) {
+      digitalWrite(LED_1_PIN, 1);
+      vTaskDelay(100 / portTICK_PERIOD_MS);
+      digitalWrite(LED_1_PIN, 0);
+      vTaskDelay(100 / portTICK_PERIOD_MS);
     }
   }
 }
 
 void blinkLED2(void *param) {
   while (1) {
-    if (xSemaphoreTake(mySem2, portMAX_DELAY)) {
-      for (int i = 0; i < 10; i++) {
-        digitalWrite(LED_2_PIN, 1);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-        digitalWrite(LED_2_PIN, 0);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
-      }
+    xSemaphoreTake(mySem2, portMAX_DELAY);
+    for (int i = 0; i < 10; i++) {
+      digitalWrite(LED_2_PIN, 1);
+      vTaskDelay(100 / portTICK_PERIOD_MS);
+      digitalWrite(LED_2_PIN, 0);
+      vTaskDelay(100 / portTICK_PERIOD_MS);
     }
   }
 }
 
 void loop() {}
+
+// Needs debouncing, otherwise loops might run multple times!
