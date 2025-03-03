@@ -1,52 +1,33 @@
-#define LED1 25
-#define LED2 26
-SemaphoreHandle_t mutex; // Create handle
+SemaphoreHandle_t myMutex;
+
 void setup() {
-    mutex = xSemaphoreCreateMutex(); //Create the mutex object
-         
-    xTaskCreate(
-        blink1,      // Function name of the task
-        "Blink 1",   // Name of the task (e.g. for debugging)
-        2048,        // Stack size (bytes)
-        NULL,        // Parameter to pass
-        1,           // Task priority
-        NULL         // Task handle
-    );
-    xTaskCreate(
-        blink2,     // Function name of the task
-        "Blink 2",  // Name of the task (e.g. for debugging)
-        2048,       // Stack size (bytes)
-        NULL,       // Parameter to pass
-        1,          // Task priority
-        NULL        // Task handle
-    );
+
+  Serial.begin(115200);
+  Serial.println("Starting...");
+
+  myMutex = xSemaphoreCreateMutex();
+  xTaskCreate(sendMsg1, "Send message #1", 2048, NULL, 1, NULL);
+  xTaskCreate(sendMsg2, "Send message #2", 2048, NULL, 1, NULL);
 }
-void blink1(void *pvParameters){
-    pinMode(LED1, OUTPUT);
-    while(1){
-        xSemaphoreTake(mutex,portMAX_DELAY); // Take the mutex
-        for(int i=0; i<10; i++){
-            digitalWrite(LED1, HIGH);
-            delay(250);  
-            digitalWrite(LED1, LOW);
-            delay(250); 
-        }
-        xSemaphoreGive(mutex); // Releases the mutex
-        delay(200); // Short delay is needed!
-    }
+
+void sendMsg1(void *params) {
+  while (1) {
+    xSemaphoreTake(myMutex, portMAX_DELAY);
+    Serial.println("Task 1: Using Shared Resource");
+    delay(1000);  // Simulating resource use
+    xSemaphoreGive(myMutex);
+    vTaskDelay(5 / portTICK_PERIOD_MS);
+  }
 }
-void blink2(void *pvParameters){
-    pinMode(LED2, OUTPUT);
-    while(1){
-        xSemaphoreTake(mutex,portMAX_DELAY); // Take the mutex
-        for(int i=0; i<10; i++){
-            digitalWrite(LED2, HIGH);
-            delay(333);
-            digitalWrite(LED2, LOW);
-            delay(333);   
-        }
-        xSemaphoreGive(mutex); // // Release the mutex
-        delay(200); // Short delay is needed!
-    }
+
+void sendMsg2(void *params) {
+  while (1) {
+    xSemaphoreTake(myMutex, portMAX_DELAY);
+    Serial.println("Task 2: Using Shared Resource");
+    delay(1000);  // Simulating resource use
+    xSemaphoreGive(myMutex);
+    vTaskDelay(5 / portTICK_PERIOD_MS);
+  }
 }
-void loop(){}
+
+void loop() {}
