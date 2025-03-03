@@ -1,39 +1,31 @@
-#define LED1 25
-TaskHandle_t blink1Handle;
+#define LED_PIN 5
+
+TaskHandle_t blinkLEDHandle;
+
 void setup() {
-    xTaskCreate(
-        blink1,       // Function name of the task
-        "Blink 1",    // Name of the task (e.g. for debugging)
-        2048,         // Stack size (bytes)
-        NULL,         // Parameter to pass
-        1,            // Task priority
-        &blink1Handle // Task handle
-    );
-    xTaskCreate(
-        suspend_resume,       // Function name of the task
-        "Suspend Resume",    // Name of the task (e.g. for debugging)
-        2048,         // Stack size (bytes)
-        NULL,         // Parameter to pass
-        1,            // Task priority
-        NULL // Task handle
-    );
+
+  pinMode(LED_PIN, OUTPUT);
+
+  xTaskCreate(blinkLED, "Blink", 2048, NULL, 1, &blinkLEDHandle);
+  xTaskCreate(suspendResume, "SuspendAndResume", 2048, NULL, 1, NULL);
 }
-void blink1(void *pvParameters){
-    pinMode(LED1, OUTPUT);
-    while(1){
-        digitalWrite(LED1, HIGH);
-        delay(100); 
-        digitalWrite(LED1, LOW);
-        delay(100);
-    }
+
+void blinkLED(void *param) {
+  while (1) {
+    digitalWrite(LED_PIN, 1);
+    vTaskDelay(125 / portTICK_PERIOD_MS);
+    digitalWrite(LED_PIN, 0);
+    vTaskDelay(125 / portTICK_PERIOD_MS);
+  }
 }
-void suspend_resume(void *pvParameters){
-    pinMode(LED1, OUTPUT);
-    while(1){
-        delay(1999);
-        vTaskSuspend(blink1Handle);
-        delay(999);
-        vTaskResume(blink1Handle);
-    }
+
+void suspendResume(void *param) {
+  while (1) {
+    vTaskDelay(3000 / portTICK_PERIOD_MS);
+    vTaskSuspend(blinkLEDHandle);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    vTaskResume(blinkLEDHandle);
+  }
 }
-void loop(){}
+
+void loop() {}
