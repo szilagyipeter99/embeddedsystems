@@ -10,7 +10,7 @@ void setup() {
   xTaskCreate(sendMsg2, "Send message #2", 2048, NULL, 1, NULL);
 }
 
-void sendMsg1(void *params) {
+void sendMsg1(void *param) {
   while (1) {
     xSemaphoreTake(myMutex, portMAX_DELAY);
     Serial.println("Task 1: Using Shared Resource");
@@ -20,7 +20,7 @@ void sendMsg1(void *params) {
   }
 }
 
-void sendMsg2(void *params) {
+void sendMsg2(void *param) {
   while (1) {
     xSemaphoreTake(myMutex, portMAX_DELAY);
     Serial.println("Task 2: Using Shared Resource");
