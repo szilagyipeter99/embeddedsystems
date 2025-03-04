@@ -14,7 +14,7 @@ void sendMsg1(void *param) {
   while (1) {
     xSemaphoreTake(myMutex, portMAX_DELAY);
     Serial.println("Task 1: Using Shared Resource");
-    delay(1000);  // Simulating resource use
+    vTaskDelay(1000 / portTICK_PERIOD_MS);  // Simulating resource use
     xSemaphoreGive(myMutex);
     vTaskDelay(5 / portTICK_PERIOD_MS);
   }
@@ -24,7 +24,7 @@ void sendMsg2(void *param) {
   while (1) {
     xSemaphoreTake(myMutex, portMAX_DELAY);
     Serial.println("Task 2: Using Shared Resource");
-    delay(1000);  // Simulating resource use
+    vTaskDelay(1000 / portTICK_PERIOD_MS);  // Simulating resource use
     xSemaphoreGive(myMutex);
     vTaskDelay(5 / portTICK_PERIOD_MS);
   }
