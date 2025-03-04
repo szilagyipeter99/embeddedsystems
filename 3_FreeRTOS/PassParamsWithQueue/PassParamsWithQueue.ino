@@ -1,11 +1,12 @@
 QueueHandle_t myQueue;  // Queue handle
 
 void setup() {
+  
   Serial.begin(115200);
 
   myQueue = xQueueCreate(5, sizeof(int));  // Can hold 5 integers (with default int size)
   xTaskCreate(sendMsg, "Send message", 2048, NULL, 1, NULL);
-  xTaskCreate(reciveMsg, "Receive message", 2048, NULL, 1, NULL);
+  xTaskCreate(receiveMsg, "Receive message", 2048, NULL, 1, NULL);
 }
 
 void sendMsg(void *param) {
@@ -27,7 +28,7 @@ void sendMsg(void *param) {
   }
 }
 
-void reciveMsg(void *param) {
+void receiveMsg(void *param) {
   int receivedValue;
   while (1) {
     // Take an element from the queue
