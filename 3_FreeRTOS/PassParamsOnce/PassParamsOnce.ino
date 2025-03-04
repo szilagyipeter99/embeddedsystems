@@ -20,9 +20,9 @@ void setupBlink(void *someBlinkStruct) {
   blinkStructure *myBlink = (blinkStructure *)someBlinkStruct;
   pinMode(myBlink->pin, OUTPUT);
   while (1) {
-    digitalWrite(myBlink->pin, HIGH);  // Would be 'myBlink.pin' if it was not a pointer
+    digitalWrite(myBlink->pin, 1);  // Would be 'myBlink.pin' if it was not a pointer
     vTaskDelay(myBlink->interval / portTICK_PERIOD_MS);
-    digitalWrite(myBlink->pin, LOW);
+    digitalWrite(myBlink->pin, 0);
     vTaskDelay(myBlink->interval / portTICK_PERIOD_MS);
   }
 }
