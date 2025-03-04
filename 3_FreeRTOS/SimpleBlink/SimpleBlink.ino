@@ -19,7 +19,6 @@ void setup() {
     1,           // Task priority
     NULL         // Task handle to interact with it
   );
-
   xTaskCreate(blinkLED2, "Blink #2", 2048, NULL, 1, NULL);
 }
 
