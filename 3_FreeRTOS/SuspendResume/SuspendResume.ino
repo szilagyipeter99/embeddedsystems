@@ -7,7 +7,7 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
 
   xTaskCreate(blinkLED, "Blink", 2048, NULL, 1, &blinkLEDHandle);
-  xTaskCreate(suspendResume, "SuspendAndResume", 2048, NULL, 1, NULL);
+  xTaskCreate(suspendResume, "Suspend and Resume", 2048, NULL, 1, NULL);
 }
 
 void blinkLED(void *param) {
