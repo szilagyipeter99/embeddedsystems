@@ -23,13 +23,9 @@ void setup() {
   mySem2 = xSemaphoreCreateBinary();
   xTaskCreate(blinkLED1, "Blink #1", 2048, NULL, 1, NULL);
   xTaskCreate(blinkLED2, "Blink #2", 2048, NULL, 1, NULL);
-  // Wait for the semaphores to be created
-  if (mySem1 != NULL) {
-    attachInterrupt(BTN_1_PIN, handleFirstISR, FALLING);
-  }
-  if (mySem2 != NULL) {
-    attachInterrupt(BTN_2_PIN, handleSecondISR, FALLING);
-  }
+  // Attach interrupts with the usual method
+  attachInterrupt(BTN_1_PIN, handleFirstISR, FALLING);
+  attachInterrupt(BTN_2_PIN, handleSecondISR, FALLING);
 }
 
 void blinkLED1(void *param) {
