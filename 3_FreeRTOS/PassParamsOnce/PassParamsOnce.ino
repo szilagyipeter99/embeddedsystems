@@ -11,8 +11,8 @@ blinkStructure blinkLED2 = { LED_2_PIN, 775 };
 
 void setup() {
   // xTaskCreate() expects the parameter to be of type 'void *'
-  xTaskCreate(&setupBlink, "Blink #1", 2048, (void *)&blinkLED1, 1, NULL);
-  xTaskCreate(&setupBlink, "Blink #2", 2048, (void *)&blinkLED2, 1, NULL);
+  xTaskCreate(setupBlink, "Blink #1", 2048, (void *)&blinkLED1, 1, NULL);
+  xTaskCreate(setupBlink, "Blink #2", 2048, (void *)&blinkLED2, 1, NULL);
 }
 
 void setupBlink(void *someBlinkStruct) {
