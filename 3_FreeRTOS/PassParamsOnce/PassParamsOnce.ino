@@ -6,8 +6,8 @@ struct blinkStructure {
   int interval;
 };
 
-blinkStructure blinkLED1 = { LED_1_PIN, 500 };
-blinkStructure blinkLED2 = { LED_2_PIN, 750 };
+blinkStructure blinkLED1 = { LED_1_PIN, 425 };
+blinkStructure blinkLED2 = { LED_2_PIN, 775 };
 
 void setup() {
   // xTaskCreate() expects the parameter to be of type 'void *'
