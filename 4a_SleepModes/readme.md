@@ -4,4 +4,3 @@
 2. DeepSleepExt0
 3. LightSleepTimer
 4. LightSleepGPIO
-5. LightSleepUART
