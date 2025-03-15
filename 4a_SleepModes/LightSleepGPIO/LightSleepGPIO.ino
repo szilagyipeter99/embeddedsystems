@@ -4,7 +4,7 @@
 // Empty array for incoming messages
 #define MSG_BUFFER_SIZE 20
 char msgBuffer[MSG_BUFFER_SIZE];
-int buffPosIndex = 0;
+int buffPosIndex = 0;  // Index to track the position of the current character
 // UART message to send the MCU to sleep
 #define SLEEP_MSG "GO_SLEEP"
 
@@ -35,15 +35,22 @@ void blinkLED(void *param) {
 
 void handleSleep(void *param) {
   while (1) {
+    // Listen for incoming messages
     while (Serial.available()) {
+      // Read a character
       char c = Serial.read();
+      // Check if the latest character is a "new line"
       if (c == '\n') {
+        // Close the string
         msgBuffer[buffPosIndex] = '\0';
         buffPosIndex = 0;
+        // Check if the strings are equal
         if (strcmp(msgBuffer, SLEEP_MSG) == 0) {
+          // Start sleeping
           esp_light_sleep_start();
         }
       } else if (buffPosIndex < MSG_BUFFER_SIZE - 1) {
+        // Put the latest character in the string and increment the index
         msgBuffer[buffPosIndex++] = c;
       }
     }
