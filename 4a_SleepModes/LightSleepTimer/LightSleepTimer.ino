@@ -33,7 +33,7 @@ void handleSleep(void *param) {
     Serial.flush();
     // Start sleeping
     esp_light_sleep_start();
-    // This message will only be visible after waking up
+    // This message will only be sent after waking up
     Serial.println("I have just woke up.");
   }
 }
