@@ -14,7 +14,7 @@ void setup() {
   Serial.println("Starting...");
 
   pinMode(LED_PIN, OUTPUT);
-  pinMode(10, INPUT_PULLUP);
+  pinMode(BTN_PIN, INPUT_PULLUP);
 
   // Wake up when the button's level is LOW
   gpio_wakeup_enable(gpio_num_t(BTN_PIN), GPIO_INTR_LOW_LEVEL);
