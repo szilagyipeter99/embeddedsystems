@@ -10,8 +10,8 @@ void setup() {
   // Wake up 5 seconds after a sleep is started
   esp_sleep_enable_timer_wakeup(5000000);  // uS
 
-  xTaskCreate(blinkLED, "Blink LED", NULL, 1, NULL);
-  xTaskCreate(handleSleep, "Handle Sleep", NULL, 1, NULL);
+  xTaskCreate(blinkLED, "Blink LED", 2048, NULL, 1, NULL);
+  xTaskCreate(handleSleep, "Handle Sleep", 2048, NULL, 1, NULL);
 }
 
 void blinkLED(void *param) {
