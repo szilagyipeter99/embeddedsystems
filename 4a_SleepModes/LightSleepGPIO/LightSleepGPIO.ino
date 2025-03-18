@@ -17,7 +17,7 @@ void setup() {
   pinMode(BTN_PIN, INPUT_PULLUP);
 
   // Wake up when the button's level is LOW
-  gpio_wakeup_enable(gpio_num_t(BTN_PIN), GPIO_INTR_LOW_LEVEL);
+  gpio_wakeup_enable((gpio_num_t)BTN_PIN, GPIO_INTR_LOW_LEVEL);
   esp_sleep_enable_gpio_wakeup();
 
   xTaskCreate(blinkLED, "Blink LED", 2048, NULL, 1, NULL);
