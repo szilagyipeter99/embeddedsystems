@@ -1,3 +1,3 @@
 # Project description:
 
-Blink an LED 5 times a second indefinitely, while listenning for incoming USB messages. As soon as the message "GO_SLEEP" is received by the MCU, send the device into light sleep. Setup a GPIO pin to wake the CPU up on a button press.
+Blink an LED at a frequency of 5 Hz indefinitely while continuously listening for incoming serial messages. Upon receiving the message "GO_SLEEP", put the MCU into light sleep mode. Configure a GPIO pin as a wakeup source to wake the MCU upon a button press. On the third wakeup event, start blinking a second LED at a frequency of 8 Hz indefinitely.
