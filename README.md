@@ -36,8 +36,8 @@ embed-examples-folder
 1. Arduino-ESP32 Core:
 [Click here](https://docs.espressif.com/projects/arduino-esp32/en/latest/libraries.html#apis)
 
-2. Espressif ESP-IDF(v5): 
-[Click here](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/index.html)
+2. Espressif ESP-IDF(v5.4): 
+[Click here](https://docs.espressif.com/projects/esp-idf/en/v5.4/esp32/api-reference/index.html)
 
 ### If your old code is cached:
 
