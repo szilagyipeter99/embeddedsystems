@@ -76,7 +76,7 @@ void blinkLED(void *params) {
 void handleSleep(void *params) {
   while (1) {
     if (sleepFlag == true) {
-      // Not needed to put flag back to false because its value is lost anyway
+      // Not needed to put flag back to false because its value is lost
       Serial.println("I am going to sleep...");
       Serial.flush();
       esp_deep_sleep_start();
