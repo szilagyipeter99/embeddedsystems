@@ -14,7 +14,7 @@ void setup() {
   xTaskCreate(
     blinkLED1,   // Function name of the task, '&blinkLed1' would also work
     "Blink #1",  // Name of the task (e.g. for debugging)
-    2048,        // Stack size (in bytes)
+    2048,        // Stack size (best practice: measure the usage)
     NULL,        // Parameter to pass (NULL: a pointer to nowhere)
     1,           // Task priority
     NULL         // Task handle to interact with it
