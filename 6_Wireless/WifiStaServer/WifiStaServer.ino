@@ -21,7 +21,7 @@ void setup() {
     Serial.println();
     Serial.println("Connected to AP!");
 
-    Serial.print("Client IP: ");
+    Serial.print("IP: ");
     Serial.println(WiFi.localIP());
 
     server.on("/", HTTP_GET, []() {
