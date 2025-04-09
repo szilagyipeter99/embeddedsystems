@@ -66,9 +66,9 @@ void setup() {
 
 void blinkLED(void *params) {
   while (1) {
-    digitalWrite(LED_PIN, 1);
+    analogWrite(LED_PIN, blinkBrightness);
     vTaskDelay(pdMS_TO_TICKS(randomValue));
-    digitalWrite(LED_PIN, 0);
+    analogWrite(LED_PIN, 0);
     vTaskDelay(pdMS_TO_TICKS(randomValue));
   }
 }
