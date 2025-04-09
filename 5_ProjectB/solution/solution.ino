@@ -8,21 +8,28 @@
 
 bool sleepFlag = false;
 
+int blinkBrightness = 255;
+
 // Bitwise left shift operation
 // 1ULL is 1 as a 64-bit uint (unsigned long long)
 // Shift the 1 by the amount of BTN_X_PIN (= 2 to the power of X)
 // The variable in case of pins 6 and 7 is 64 + 128 = 192
 uint64_t btns_1_2_bitmask = (1ULL << BTN_1_PIN) + (1ULL << BTN_2_PIN);
 
-// Timer to send MCU to sleep
-hw_timer_t *myTimer = NULL;
+// Timers to send MCU to sleep
+hw_timer_t *myTimer1 = NULL;
+hw_timer_t *myTimer2 = NULL;
 
 // Data to be retrieved after waking up
 // Store variable in LP memory
 RTC_DATA_ATTR uint8_t randomValue = 0;
 
-// Handle timer ISR
-void IRAM_ATTR onTimer() {
+// Handle timer ISRs
+void IRAM_ATTR onTimer1() {
+  blinkBrightness = 128;
+  timerAlarm(myTimer2, 3000000, false, 0);
+}
+void IRAM_ATTR onTimer2() {
   sleepFlag = true;
 }
 
@@ -55,10 +62,14 @@ void setup() {
   // Enable EXT1 wakeup to both buttons
   esp_sleep_enable_ext1_wakeup_io(btns_1_2_bitmask, ESP_EXT1_WAKEUP_ANY_LOW);
 
-  // Setup a 6 second timer
-  myTimer = timerBegin(1000000);
-  timerAttachInterrupt(myTimer, &onTimer);
-  timerAlarm(myTimer, 6000000, false, 0);
+  // Setup two 3 second timers
+  myTimer1 = timerBegin(1000000);
+  timerAttachInterrupt(myTimer1, &onTimer1);
+  timerAlarm(myTimer1, 3000000, false, 0);
+
+  myTimer2 = timerBegin(1000000);
+  timerEnd(myTimer2);
+  timerAttachInterrupt(myTimer2, &onTimer2);
 
   xTaskCreate(blinkLED, "Blink LED", 2048, NULL, 1, NULL);
   xTaskCreate(handleSleep, "Handle Sleep", 2048, NULL, 1, NULL);
