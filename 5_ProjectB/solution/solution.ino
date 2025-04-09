@@ -58,7 +58,7 @@ void setup() {
   // Setup a 5 second timer
   myTimer = timerBegin(1000000);
   timerAttachInterrupt(myTimer, &onTimer);
-  timerAlarm(myTimer, 5000000, false, 0);
+  timerAlarm(myTimer, 6000000, false, 0);
 
   xTaskCreate(blinkLED, "Blink LED", 2048, NULL, 1, NULL);
   xTaskCreate(handleSleep, "Handle Sleep", 2048, NULL, 1, NULL);
@@ -67,9 +67,9 @@ void setup() {
 void blinkLED(void *params) {
   while (1) {
     digitalWrite(LED_PIN, 1);
-    vTaskDelay(pdMS_TO_TICKS(125));
+    vTaskDelay(pdMS_TO_TICKS(randomValue));
     digitalWrite(LED_PIN, 0);
-    vTaskDelay(pdMS_TO_TICKS(125));
+    vTaskDelay(pdMS_TO_TICKS(randomValue));
   }
 }
 
