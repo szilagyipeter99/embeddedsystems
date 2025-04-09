@@ -55,7 +55,7 @@ void setup() {
   // Enable EXT1 wakeup to both buttons
   esp_sleep_enable_ext1_wakeup_io(btns_1_2_bitmask, ESP_EXT1_WAKEUP_ANY_LOW);
 
-  // Setup a 5 second timer
+  // Setup a 6 second timer
   myTimer = timerBegin(1000000);
   timerAttachInterrupt(myTimer, &onTimer);
   timerAlarm(myTimer, 6000000, false, 0);
