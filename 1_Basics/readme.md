@@ -1,5 +1,5 @@
 ### Suggested order of examples:
 
-1. singlefile
-2. multiplefiles
-3. pointer
+1. SingleFile
+2. MultipleFiles
+3. Pointer
