@@ -5,10 +5,10 @@ This repository contains the examples created in the Embedded systems practices.
 ### Required steps before testing examples:
 
 1. Install the Espressif IDE:
-[Click here](https://www.arduino.cc/en/software)
+[Click here](https://docs.espressif.com/projects/espressif-ide/en/latest/downloads.html#downloads)
 
 2. Install the ESP-IDF: 
-[Click here](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html#installing-using-arduino-ide)
+[Click here](https://docs.espressif.com/projects/espressif-ide/en/latest/installation.html#esp-idf-and-tools-installation)
 
 3. Install the CP210x driver:
 [Click here](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)
@@ -21,7 +21,7 @@ This repository contains the examples created in the Embedded systems practices.
 2. Name the project according to the example
 3. Select 'esp32c6' as the target
 4. Modify or create the files in the base project according to the example folder
-5. Press 'Launch'
+5. Press 'Launch' to upload the project to the device
 
 ### Documentations:
 
