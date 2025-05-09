@@ -39,9 +39,6 @@ embed-examples-folder
 2. Espressif ESP-IDF(v5.4): 
 [Click here](https://docs.espressif.com/projects/esp-idf/en/v5.4/esp32/api-reference/index.html)
 
-### If your old code is cached:
-
-Sometimes the IDE will cache the code and even after changes, it will try to compile and upload the old cached version. If this has happened, change the verbosity level in the __Core Debug Level__ settings, this will force a clean.
 
 ### For your use and inspiration
 
