@@ -4,10 +4,10 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Required steps before testing examples:
 
-1. Install Arduino IDE:
+1. Install the Espressif IDE:
 [Click here](https://www.arduino.cc/en/software)
 
-2. Install Arduino-ESP32 Core: 
+2. Install the ESP-IDF: 
 [Click here](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html#installing-using-arduino-ide)
 
 3. Install the CP210x driver:
@@ -15,21 +15,13 @@ This repository contains the examples created in the Embedded systems practices.
 
 4. Create separate folders for each example
 
-### Recommended folder structure:
+### Testing an example in the Espressif IDE:
 
-The IDE requires the __.ino__ files to be in a folder with the same name, so an __example-X__ folder is needed for every __example-X.ino__ file! Additional __.h__ and __.cpp__ files are automatically imported.
-
-```bash
-embed-examples-folder
-├── example-1
-│   ├── example-1.ino
-│   ├── something.h
-│   └── something.cpp
-├── example-2
-│   ├── example-2.ino
-│   └── ...
-└── ...
-```
+1. File > New > Espressif IDF Project
+2. Name the project according to the example
+3. Select 'esp32c6' as the target
+4. Modify or create the files in the base project according to the example folder
+5. Press 'Launch'
 
 ### Documentations:
 
