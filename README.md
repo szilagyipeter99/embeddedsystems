@@ -37,7 +37,7 @@ embed-examples-folder
 [Click here](https://docs.espressif.com/projects/arduino-esp32/en/latest/libraries.html#apis)
 
 2. Espressif ESP-IDF(v5.4): 
-[Click here](https://docs.espressif.com/projects/esp-idf/en/v5.4/esp32/api-reference/index.html)
+[Click here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/api-reference/index.html)
 
 
 ### For your use and inspiration
