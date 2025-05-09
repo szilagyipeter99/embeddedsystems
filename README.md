@@ -33,10 +33,10 @@ embed-examples-folder
 
 ### Documentations:
 
-1. Arduino-ESP32 Core:
-[Click here](https://docs.espressif.com/projects/arduino-esp32/en/latest/libraries.html#apis)
+1. ESP32-C6 DevKitM-1:
+[Click here](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitm-1/user_guide.html)
 
-2. Espressif ESP-IDF(v5.4): 
+2. ESP-IDF (latest): 
 [Click here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/api-reference/index.html)
 
 
