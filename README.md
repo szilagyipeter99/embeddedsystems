@@ -18,9 +18,13 @@ This repository contains the examples created in the Embedded systems practices.
 ### Testing an example in the Espressif IDE:
 
 1. File > New > Espressif IDF Project
+   
 2. Name the project according to the example
+   
 3. Select 'esp32c6' as the target
+   
 4. Modify or create the files in the base project according to the example folder
+
 5. Press 'Launch' to upload the project to the device
 
 ### Documentations:
