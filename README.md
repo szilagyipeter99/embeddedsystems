@@ -37,7 +37,7 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Important note:
 
-The codes provided in the examples are intended for educational purposes and are designed to be beginner-friendly and easy to understand. As such, it may lack comprehensive error handling, optimization, and other critical aspects required in production-level software.
+The codes provided in this repository are intended for educational purposes and are designed to be beginner-friendly and easy to understand. As such, it may lack comprehensive error handling, optimization, and other critical aspects required in production-level software.
 
 ### For your use and inspiration
 
