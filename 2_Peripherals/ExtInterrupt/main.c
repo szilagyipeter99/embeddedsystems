@@ -97,7 +97,7 @@ Improvements:
 
 - The delays have blocking behaviour, the CPU is not able to perform any other
   operations while it is waiting. A real-time operating system will solve this
-  problem with its 'vTaskDelay()' function instead of the simple 'sleep()'.
+  problem with its 'vTaskDelay()' function instead of 'sleep()' or 'usleep()'.
 
 - There are two separate ISRs for the two buttons, they should be handled using
   only one with an input argument for the identifiers of the buttons. Inside
