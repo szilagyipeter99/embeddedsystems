@@ -15,7 +15,7 @@
 
 // GPIOs are configured using a bit mask
 // 1ULL (unsigned long long) is 1 as a 64 bit unsigned int
-// The bit mask is this list of 0s with a 1 at the index of the button numbers
+// The bit mask is a list of zeros with ones at the indexes of the button numbers
 /*
 Example:
 (1ULL << 5) = 0b0000000000000000000000000000000000000000000000000000000000100000
