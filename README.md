@@ -19,7 +19,7 @@ This repository contains the examples created in the Embedded systems practices.
    
 2. Name the project according to the example
    
-3. Select 'esp32c6' as the target
+3. Select 'esp32c6' as the target and choose the appropriate serial port
    
 4. Modify or create the files in the base project according to the example folder
 
