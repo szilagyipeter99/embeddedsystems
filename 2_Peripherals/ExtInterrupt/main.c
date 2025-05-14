@@ -14,7 +14,7 @@
 #define LED_2_PIN GPIO_NUM_13
 
 // GPIOs are configured using a bit mask
-// ULL (unsigned long long) is 0 as a 64 bit unsigned int
+// 1ULL (unsigned long long) is 1 as a 64 bit unsigned int
 // The bit mask is this list of 0s with a 1 at the index of the button numbers
 /*
 Example:
