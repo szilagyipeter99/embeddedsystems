@@ -1,6 +1,6 @@
 ### Suggested order of examples:
 
-1. Debounce
+1. Bounce
 2. ExtInterrupt
 3. TimerInterrupt
 4. PWM
