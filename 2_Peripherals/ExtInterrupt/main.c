@@ -41,18 +41,22 @@ static void IRAM_ATTR handleSecondISR() { secondBlink = 1; }
 void app_main(void) {
 
 	// Configure both buttons
-	gpio_config_t btn_config = {.pin_bit_mask = BTN_MASK,
-								.mode = GPIO_MODE_INPUT,
-								.pull_up_en = 1,
-								.pull_down_en = 0,
-								.intr_type = GPIO_INTR_NEGEDGE};
+	gpio_config_t btn_config = {
+		.pin_bit_mask = BTN_MASK,
+		.mode = GPIO_MODE_INPUT,
+		.pull_up_en = 1,
+		.pull_down_en = 0,
+		.intr_type = GPIO_INTR_NEGEDGE,
+	};
 
 	// Configure both LEDs
-	gpio_config_t led_config = {.pin_bit_mask = LED_MASK,
-								.mode = GPIO_MODE_OUTPUT,
-								.pull_up_en = 0,
-								.pull_down_en = 0,
-								.intr_type = GPIO_INTR_DISABLE};
+	gpio_config_t led_config = {
+		.pin_bit_mask = LED_MASK,
+		.mode = GPIO_MODE_OUTPUT,
+		.pull_up_en = 0,
+		.pull_down_en = 0,
+		.intr_type = GPIO_INTR_DISABLE,
+	};
 
 	gpio_config(&btn_config);
 	gpio_config(&led_config);
