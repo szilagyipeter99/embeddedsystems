@@ -44,7 +44,7 @@ void app_main(void) {
 	/*
 
 	- It is possible to convert the raw ADC measurement value to the real
-	  measured voltage. By design, the ADC reference voltage for  ESP32C6 is
+	  measured voltage. By design, the ADC reference voltage for ESP32C6 is
 	  1100 mV, but in reality it ranges from 1000 mV to 1200 mV. Using the
 	  calibration driver the output results will be more accurate.
 
