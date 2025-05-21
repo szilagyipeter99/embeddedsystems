@@ -15,7 +15,8 @@
 
 // GPIOs are configured using a bit mask
 // 1ULL (unsigned long long) is 1 as a 64 bit unsigned int
-// The bit mask is a list of zeros with ones at the indexes of the button numbers
+// The bit mask is a list of zeros with ones at the indexes of the button
+// numbers
 /*
 Example:
 (1ULL << 5) = 0b0000000000000000000000000000000000000000000000000000000000100000
@@ -88,6 +89,10 @@ void app_main(void) {
 			}
 			secondBlink = false;
 		}
+
+		// 10ms delay to feed the watchdog
+		// Otherwise there is nothing to do in this loop
+		usleep(10000);
 	}
 }
 
@@ -100,7 +105,7 @@ Improvements:
   problem with its 'vTaskDelay()' function instead of 'sleep()' or 'usleep()'.
 
 - There are two separate ISRs for the two buttons, they should be handled using
-  only one with an input argument for the identifiers of the buttons. Inside
-  that single ISR there should be a FIFO queue collecting the events.
+  one unified interrupt with an input argument for the identifiers of the
+  buttons. Inside the ISR there should be a FIFO queue collecting the events.
 
 */
