@@ -9,6 +9,20 @@
 
 void app_main(void) {
 
+	/*
+
+	- There are configurable timers and channels. The 7 available channels are
+	  technically GPIOs, all of them have their own duty cycle. There are 4
+	  selectable timers that are configurable with different resolutions and
+	  frequencies. Every channel should use one of the configured timers.
+
+	- ESP32C6 only supports 'LEDC_LOW_SPEED_MODE'. Unfortunately, ESP-IDF
+	  doesn't provide a built-in shortcut or default for it, so it must be
+	  explicitly passed every time.
+	  
+	*/
+
+	// Configure a LEDC timer
 	ledc_timer_config_t pwm_config = {
 		.speed_mode = LEDC_LOW_SPEED_MODE,
 		.duty_resolution = LEDC_TIMER_12_BIT,
@@ -16,8 +30,8 @@ void app_main(void) {
 		.freq_hz = 5000,
 		.clk_cfg = LEDC_AUTO_CLK,
 	};
-	ledc_timer_config(&pwm_config);
 
+	// Configure a LEDC channel
 	ledc_channel_config_t channel_config = {
 		.gpio_num = LED_PIN,
 		.speed_mode = LEDC_LOW_SPEED_MODE,
@@ -27,6 +41,8 @@ void app_main(void) {
 		.duty = 0,
 		.hpoint = 0,
 	};
+
+	ledc_timer_config(&pwm_config);
 	ledc_channel_config(&channel_config);
 
 	while (true) {
