@@ -2,6 +2,8 @@
 #ifndef TEMP_MONITOR_H
 #define TEMP_MONITOR_H
 
+// MODERN: #pragma once
+
 #include <stdint.h> // To use fixed-width integer types like 'int8_t'
 
 float readTemperature();
