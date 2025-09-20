@@ -2,6 +2,7 @@
 
 1. Bounce
 2. ExtInterrupt
-3. PWM (LEDC)
-4. I2C-master & I2C-slave
-5. ADC
+3. Optional: TimerInterrupt
+4. PWM (LEDC)
+5. I2C-master & I2C-slave
+6. ADC
