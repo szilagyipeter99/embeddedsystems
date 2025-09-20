@@ -46,7 +46,7 @@ def terminal(port, baudrate=115200):
 
 if __name__ == "__main__":
     while True:
-        print("\n--- USB comms test (Embedded systems) ---")
+        print("\n--- Serial tester (Embedded systems) ---")
         print("1. Choose device")
         print("2. Quit")
         option = input("\nSelect option: ")
