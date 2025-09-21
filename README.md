@@ -46,7 +46,7 @@ InlayHints:
   Enabled: No
 ```
 
-Hide unused includes:
+Hide 'unused-includes' problems:
 
 ```
 Diagnostics:
