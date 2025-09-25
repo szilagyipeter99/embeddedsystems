@@ -1,6 +1,6 @@
 # Embedded systems
 
-This repository contains the examples created in the Embedded systems practices. Each folder includes a project with the neccessary code written in the Espressif IDE, tested on the ESP32-C6-DevKitM-1.
+This repository contains the examples created in the Embedded systems practices. Each folder includes a project with the neccessary code written using ESP-IDF, tested on the ESP32-C6-DevKitM-1.
 
 ### Required steps before testing examples:
 
