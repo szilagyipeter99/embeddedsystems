@@ -1,15 +1,16 @@
 // Include guard to prevent multiple inclusions
+// More modern option: #pragma once
 #ifndef TEMP_MONITOR_H
 #define TEMP_MONITOR_H
 
-// MODERN: #pragma once
+// Include the following header to use fixed-width integer types like 'int8_t'
+// (was automatically included in 'main.c')
+#include <stdint.h>
 
-#include <stdint.h> // To use fixed-width integer types like 'int8_t'
+float read_temperature();
 
-float readTemperature();
+int8_t get_rounded_temperature(float temperature);
 
-void evaluateTemperature(float temperature, float threshold);
-
-int8_t getRoundedTemperature(float temperature);
+void evaluate_temperature(float temperature, float threshold);
 
 #endif
