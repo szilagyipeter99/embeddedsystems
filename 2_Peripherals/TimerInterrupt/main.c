@@ -30,7 +30,7 @@ void app_main(void) {
 	};
 	gptimer_new_timer(&timer_config, &my_timer);
 	// Would be safer this way:
-	// ESP_ERROR_CHECK(gptimer_new_timer(&timer_config, &myTimer));
+	// ESP_ERROR_CHECK(gptimer_new_timer(&timer_config, &my_timer));
 
 	// Add an alarm to the timer
 	gptimer_alarm_config_t alarm_config = {
