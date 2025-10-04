@@ -72,7 +72,7 @@ void app_main(void) {
 	gpio_isr_handler_add(BTN_1_PIN, handle_first_isr, NULL);
 	gpio_isr_handler_add(BTN_2_PIN, handle_second_isr, NULL);
 
-	// Create a binary semaphore
+	// Create binary semaphores
 	my_sem_1 = xSemaphoreCreateBinary();
 	my_sem_2 = xSemaphoreCreateBinary();
 
