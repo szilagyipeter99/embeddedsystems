@@ -8,7 +8,7 @@ QueueHandle_t my_queue;
 
 static const char *TAG = "Main";
 
-void send_msg(void *param) {
+void send_msg(void *params) {
 	uint32_t cntr = 0;
 	while (true) {
 		cntr++;
@@ -24,7 +24,7 @@ void send_msg(void *param) {
 	}
 }
 
-void receive_msg(void *param) {
+void receive_msg(void *params) {
 	uint32_t received_val;
 	while (true) {
 		// Take an element from the queue
