@@ -1,11 +1,7 @@
 #include "driver/ledc.h"
-#include "hal/ledc_types.h"
-#include "soc/clk_tree_defs.h"
-#include "soc/gpio_num.h"
-#include <stdbool.h>
 #include <unistd.h>
 
-#define LED_PIN GPIO_NUM_12
+#define LED_PIN GPIO_NUM_6
 
 void app_main(void) {
 
@@ -19,7 +15,7 @@ void app_main(void) {
 	- ESP32C6 only supports 'LEDC_LOW_SPEED_MODE'. Unfortunately, ESP-IDF
 	  doesn't provide a built-in shortcut or default for it, so it must be
 	  explicitly passed every time.
-	  
+
 	*/
 
 	// Configure a LEDC timer
