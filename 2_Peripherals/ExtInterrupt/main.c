@@ -1,17 +1,12 @@
 #include "driver/gpio.h"
 #include "esp_attr.h"
-#include "esp_intr_alloc.h"
-#include "hal/gpio_types.h"
-#include "soc/gpio_num.h"
 #include <stdbool.h>
-#include <stdio.h>
-#include <time.h>
 #include <unistd.h>
 
-#define BTN_1_PIN GPIO_NUM_10
-#define BTN_2_PIN GPIO_NUM_11
-#define LED_1_PIN GPIO_NUM_12
-#define LED_2_PIN GPIO_NUM_13
+#define BTN_1_PIN GPIO_NUM_4
+#define BTN_2_PIN GPIO_NUM_5
+#define LED_1_PIN GPIO_NUM_6
+#define LED_2_PIN GPIO_NUM_7
 
 // GPIOs are configured using a bit mask
 // 1ULL (unsigned long long) is 1 as a 64 bit unsigned int
@@ -29,14 +24,14 @@ Decimal     = 128 + 32 = 160
 
 // Without being volatile, the compiler might cache the value of the variable in
 // a register and never notice the ISR changed it
-volatile bool firstBlink = 0;
-volatile bool secondBlink = 0;
+volatile bool first_blink = 0;
+volatile bool second_blink = 0;
 
 // IRAM_ATTR flag:
 // Tells the compiler and linker to place the ISR in RAM instead of flash memory
 // Ensures faster access, prevents optimizations from the compiler
-static void IRAM_ATTR handleFirstISR() { firstBlink = 1; }
-static void IRAM_ATTR handleSecondISR() { secondBlink = 1; }
+static void IRAM_ATTR handle_first_isr() { first_blink = 1; }
+static void IRAM_ATTR handle_second_isr() { second_blink = 1; }
 
 void app_main(void) {
 
@@ -48,6 +43,8 @@ void app_main(void) {
 		.pull_down_en = 0,
 		.intr_type = GPIO_INTR_NEGEDGE,
 	};
+	
+	gpio_config(&btn_config);
 
 	// Configure both LEDs
 	gpio_config_t led_config = {
@@ -57,19 +54,18 @@ void app_main(void) {
 		.pull_down_en = 0,
 		.intr_type = GPIO_INTR_DISABLE,
 	};
-
-	gpio_config(&btn_config);
+	
 	gpio_config(&led_config);
 
 	// Configure the ISRs
 	gpio_install_isr_service(ESP_INTR_FLAG_IRAM);
-	gpio_isr_handler_add(BTN_1_PIN, handleFirstISR, NULL);
-	gpio_isr_handler_add(BTN_2_PIN, handleSecondISR, NULL);
+	gpio_isr_handler_add(BTN_1_PIN, handle_first_isr, NULL);
+	gpio_isr_handler_add(BTN_2_PIN, handle_second_isr, NULL);
 
 	while (true) {
 		// This is executed as soon as 'firstBlink' is true
 		// and the CPU is available
-		if (firstBlink) {
+		if (first_blink) {
 			gpio_set_level(LED_1_PIN, 1);
 			usleep(500000);
 			gpio_set_level(LED_1_PIN, 0);
@@ -81,17 +77,17 @@ void app_main(void) {
 			gpio_set_level(LED_1_PIN, 1);
 			usleep(500000);
 			gpio_set_level(LED_1_PIN, 0);
-			firstBlink = false;
+			first_blink = false;
 		}
-		// Same logic for 'secondBlink' but with a for loop
-		if (secondBlink) {
+		// Same logic for 'second_blink' but with a for loop
+		if (second_blink) {
 			for (int i = 0; i < 3; ++i) {
 				gpio_set_level(LED_2_PIN, 1);
 				usleep(500000);
 				gpio_set_level(LED_2_PIN, 0);
 				usleep(500000);
 			}
-			secondBlink = false;
+			second_blink = false;
 		}
 
 		// 10ms delay to feed the watchdog
