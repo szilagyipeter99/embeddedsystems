@@ -43,7 +43,6 @@ void app_main(void) {
 		.pull_down_en = 0,
 		.intr_type = GPIO_INTR_NEGEDGE,
 	};
-	
 	gpio_config(&btn_config);
 
 	// Configure both LEDs
@@ -54,7 +53,6 @@ void app_main(void) {
 		.pull_down_en = 0,
 		.intr_type = GPIO_INTR_DISABLE,
 	};
-	
 	gpio_config(&led_config);
 
 	// Configure the ISRs
