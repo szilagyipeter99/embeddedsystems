@@ -61,7 +61,7 @@ void app_main(void) {
 	gpio_isr_handler_add(BTN_2_PIN, handle_second_isr, NULL);
 
 	while (true) {
-		// This is executed as soon as 'firstBlink' is true
+		// This is executed as soon as 'first_blink' is true
 		// and the CPU is available
 		if (first_blink) {
 			gpio_set_level(LED_1_PIN, 1);
