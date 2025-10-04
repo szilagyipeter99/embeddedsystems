@@ -1,43 +1,57 @@
-#define LED_1_PIN 4
-#define LED_2_PIN 5
+#include "driver/gpio.h"
+#include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
-void setup() {
+#define LED_1_PIN GPIO_NUM_6
+#define LED_2_PIN GPIO_NUM_7
 
-  Serial.begin(115200);
-  Serial.println("Starting...");
-  Serial.println(portTICK_PERIOD_MS);
-  Serial.println(configTICK_RATE_HZ);
+#define LED_MASK ((1ULL << LED_1_PIN) | (1ULL << LED_2_PIN))
 
-  pinMode(LED_1_PIN, OUTPUT);
-  pinMode(LED_2_PIN, OUTPUT);
+static const char *TAG = "Main";
 
-  xTaskCreate(
-    blinkLED1,   // Function name of the task, '&blinkLed1' would also work
-    "Blink #1",  // Name of the task (e.g. for debugging)
-    2048,        // Stack size (best practice: measure the usage)
-    NULL,        // Parameter to pass (NULL: a pointer to nowhere)
-    1,           // Task priority
-    NULL         // Task handle to interact with it
-  );
-  xTaskCreate(blinkLED2, "Blink #2", 2048, NULL, 1, NULL);
+// Task to blink LED_1
+void blink_led_1(void *params) {
+	while (true) {
+		gpio_set_level(LED_1_PIN, 1);
+		vTaskDelay(pdMS_TO_TICKS(500));
+		gpio_set_level(LED_1_PIN, 0);
+		vTaskDelay(pdMS_TO_TICKS(500));
+	}
 }
 
-void blinkLED1(void *param) {
-  while (1) {
-    digitalWrite(LED_1_PIN, 1);
-    vTaskDelay(500 / portTICK_PERIOD_MS);  // Same as 'delay(500);' on an ESP32
-    digitalWrite(LED_1_PIN, 0);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
-  }
+// Task to blink LED_2
+void blink_led_2(void *params) {
+	while (true) {
+		gpio_set_level(LED_2_PIN, 1);
+		vTaskDelay(pdMS_TO_TICKS(125));
+		gpio_set_level(LED_2_PIN, 0);
+		vTaskDelay(pdMS_TO_TICKS(125));
+	}
 }
 
-void blinkLED2(void *param) {
-  while (1) {
-    digitalWrite(LED_2_PIN, 1);
-    vTaskDelay(125 / portTICK_PERIOD_MS);
-    digitalWrite(LED_2_PIN, 0);
-    vTaskDelay(125 / portTICK_PERIOD_MS);
-  }
-}
+void app_main(void) {
 
-void loop() {}
+	ESP_LOGI(TAG, "Tick period (ms): %u", (unsigned)portTICK_PERIOD_MS);
+	ESP_LOGI(TAG, "Tick rate (Hz): %u", (unsigned)configTICK_RATE_HZ);
+
+	// Configure the LEDs
+	gpio_config_t led_config = {
+		.pin_bit_mask = LED_MASK,
+		.mode = GPIO_MODE_OUTPUT,
+		.pull_up_en = 0,
+		.pull_down_en = 0,
+		.intr_type = GPIO_INTR_DISABLE,
+	};
+	gpio_config(&led_config);
+
+	// Create FreeRTOS tasks
+	xTaskCreate(blink_led_1, // Task function
+				"Blink #1",	 // Name of the task (for logging/debugging)
+				2048, // Stack size in words (measure usage for best practice)
+				NULL, // Parameters to pass (NULL: a pointer to nowhere)
+				1,	  // Task priority
+				NULL  // Task handle to interact with it
+	);
+	xTaskCreate(blink_led_2, "Blink #2", 2048, NULL, 1, NULL);
+}
