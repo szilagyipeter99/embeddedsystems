@@ -2,9 +2,7 @@
 
 1. SimpleBlink
 2. SuspendResume
-3. Needed:BinarySemaphoreA
-4. Not needed: BinarySemaphoreB
-5. BinarySemaphoreISR
-6. Not needed: Mutex
-7. PassParamsOnce
-8. PassParamsWithQueue
+3. BinarySemaphore
+4. BinarySemaphoreISR
+5. PassParamsOnce
+6. PassParamsWithQueue
