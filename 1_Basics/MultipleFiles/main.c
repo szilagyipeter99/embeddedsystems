@@ -1,8 +1,12 @@
-#include "esp_log.h"
 #include <stdbool.h>
 #include <unistd.h>
-// Include the custom header file
+
+// Include the custom header
 #include "temp_monitor.h"
+
+// Including 'esp_log.h' is technically not needed here
+// ('temp_monitor.h' already includes it)
+#include "esp_log.h"
 
 #define COLD_THRESHOLD 20.0f
 
