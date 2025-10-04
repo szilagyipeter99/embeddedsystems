@@ -1,11 +1,10 @@
-#include "esp_adc/adc_cali.h"
-#include "esp_adc/adc_cali_scheme.h"
 #include "esp_adc/adc_oneshot.h"
 #include "esp_log.h"
-#include <stdbool.h>
 #include <unistd.h>
 
-#define MEAS_PIN ADC_CHANNEL_3 // GPIO 3
+#define MEAS_PIN ADC_CHANNEL_4 // GPIO 4
+
+static const char *TAG = "Main";
 
 // These variables will always hold the latest values
 static int raw_meas;
@@ -74,7 +73,7 @@ void app_main(void) {
 		adc_oneshot_read(adc_handle, MEAS_PIN, &raw_meas);
 		// Convert the result to a voltage and write it into 'cali_voltage'
 		adc_cali_raw_to_voltage(cali_handle, raw_meas, &cali_voltage);
-		ESP_LOGI("Main", "Voltage: %d mV (Raw: %d)", cali_voltage, raw_meas);
+		ESP_LOGI(TAG, "Voltage: %d mV (Raw: %d)", cali_voltage, raw_meas);
 		sleep(1);
 	}
 }
