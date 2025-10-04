@@ -8,7 +8,7 @@
 
 static const char *TAG = "Main";
 
-void blink_led(void *param) {
+void blink_led(void *params) {
 	while (true) {
 		gpio_set_level(LED_PIN, 1);
 		vTaskDelay(pdMS_TO_TICKS(125));
@@ -17,7 +17,7 @@ void blink_led(void *param) {
 	}
 }
 
-void handle_sleep(void *param) {
+void handle_sleep(void *params) {
 	while (true) {
 		vTaskDelay(pdMS_TO_TICKS(4000));
 		ESP_LOGI(TAG, "I am awake for now.");
