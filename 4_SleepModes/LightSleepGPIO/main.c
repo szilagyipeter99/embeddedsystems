@@ -104,6 +104,8 @@ void handle_sleep(void *param) {
 				esp_light_sleep_start();
 			}
 		}
+
+		// Feed the watchdog
 		vTaskDelay(pdMS_TO_TICKS(10));
 	}
 }
