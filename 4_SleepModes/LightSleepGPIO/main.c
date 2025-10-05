@@ -4,12 +4,13 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include <string.h>
+#include <unistd.h>
 
 #define BTN_PIN GPIO_NUM_4
 #define LED_PIN GPIO_NUM_6
 
 #define BUFFER_SIZE 50
-#define SLEEP_MSG "GO_SLEEP"
+#define SLEEP_MSG "GO_SLEEP\r"
 
 // Empty array for incoming (max. 50 character long) messages
 static char msg_buffer[BUFFER_SIZE];
@@ -50,6 +51,10 @@ void handle_sleep(void *param) {
 	};
 	gpio_config(&btn_config);
 
+	// Let the GPIO driver log its settings
+	fflush(stdout);
+	fsync(fileno(stdout));
+
 	// Configure GPIO wakeup
 	// Trigger on low level (internal pull-up enabled)
 	gpio_wakeup_enable(BTN_PIN, GPIO_INTR_LOW_LEVEL);
@@ -65,18 +70,19 @@ void handle_sleep(void *param) {
 		.flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
 		.source_clk = UART_SCLK_DEFAULT,
 	};
-	uart_driver_install(UART_NUM_0, BUFFER_SIZE, 0, 0, NULL, 0);
+	uart_driver_install(UART_NUM_0, 1024, 0, 0, NULL, 0);
 	uart_param_config(UART_NUM_0, &uart_config);
-	// If different pins were to be used instead of the default ones:
-	// 'uart_set_pin(uart_num, tx_io_num, rx_io_num, rts_io_num, cts_io_num);'
+	// Use the default pins for UART communication
+	uart_set_pin(UART_NUM_0, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE,
+				 UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 
 	while (true) {
 		// Wait for a message to arrive
-		int len = uart_read_bytes(UART_NUM_0, msg_buffer, BUFFER_SIZE - 1, 50);
+		int len = uart_read_bytes(UART_NUM_0, msg_buffer, BUFFER_SIZE - 1, 5);
 
 		/*
 
-		50 RTOS ticks (50 ms right now) as the maximum time to wait until the
+		5 ms (5 RTOS ticks right now) as the maximum time to wait until the
 		requested number of bytes arrive might not be enough depending on the
 		length of the message:
 
@@ -90,7 +96,7 @@ void handle_sleep(void *param) {
 		*/
 
 		// Check if a message arrived ('uart_read_bytes' returns -1 on error)
-		if (len >= 0) {
+		if (len > 0) {
 			// Null-terminate (close) the message
 			msg_buffer[len] = '\0';
 			// Compare it to the sleep command to check if its correct
@@ -98,11 +104,12 @@ void handle_sleep(void *param) {
 				esp_light_sleep_start();
 			}
 		}
+		vTaskDelay(pdMS_TO_TICKS(10));
 	}
 }
 
 void app_main(void) {
 
 	xTaskCreate(blink_led, "Blink LED", 2048, NULL, 1, NULL);
-	xTaskCreate(handle_sleep, "Handle Sleep", 2048, NULL, 1, NULL);
+	xTaskCreate(handle_sleep, "Handle Sleep", 4096, NULL, 1, NULL);
 }
