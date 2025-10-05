@@ -30,9 +30,9 @@ void blink_led_2(void *params) {
 	while (true) {
 		xSemaphoreTake(my_sem, portMAX_DELAY);
 		for (int i = 0; i < 10; i++) {
-			gpio_set_level(LED_1_PIN, 1);
+			gpio_set_level(LED_2_PIN, 1);
 			vTaskDelay(pdMS_TO_TICKS(125));
-			gpio_set_level(LED_1_PIN, 0);
+			gpio_set_level(LED_2_PIN, 0);
 			vTaskDelay(pdMS_TO_TICKS(125));
 		}
 		xSemaphoreGive(my_sem);
