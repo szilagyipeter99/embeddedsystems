@@ -2,7 +2,9 @@
 #include "esp_log.h"
 #include "esp_sleep.h"
 #include "freertos/FreeRTOS.h"
+#include "freertos/projdefs.h"
 #include "freertos/task.h"
+#include <unistd.h>
 
 #define LED_PIN GPIO_NUM_6
 
@@ -23,6 +25,11 @@ void handle_sleep(void *params) {
 		ESP_LOGI(TAG, "I am awake for now.");
 		vTaskDelay(pdMS_TO_TICKS(2000));
 		ESP_LOGI(TAG, "I am going to sleep...");
+		// Ensure all the data in the buffer is sent down to the UART driver
+		// Otherwise the 'I am going to sleep...' message will not be fully sent
+		fflush(stdout);
+		fsync(fileno(stdout));
+
 		// Start sleeping
 		esp_light_sleep_start();
 
