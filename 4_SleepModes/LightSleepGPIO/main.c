@@ -113,5 +113,5 @@ void handle_sleep(void *param) {
 void app_main(void) {
 
 	xTaskCreate(blink_led, "Blink LED", 2048, NULL, 1, NULL);
-	xTaskCreate(handle_sleep, "Handle Sleep", 4096, NULL, 1, NULL);
+	xTaskCreate(handle_sleep, "Handle Sleep", 2048, NULL, 1, NULL);
 }
