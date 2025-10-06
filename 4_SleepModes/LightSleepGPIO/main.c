@@ -78,6 +78,7 @@ void handle_sleep(void *param) {
 
 	while (true) {
 		// Wait for a message to arrive
+		// ('uart_read_bytes' returns the length of the message)
 		int len = uart_read_bytes(UART_NUM_0, msg_buffer, BUFFER_SIZE - 1, 5);
 
 		/*
