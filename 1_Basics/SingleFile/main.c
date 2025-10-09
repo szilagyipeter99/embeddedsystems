@@ -5,7 +5,7 @@
 
 // Preprocessing directive to define a float constant
 // 20.0 without the 'f' would work, but it would default to double precision
-// (more memory, slower calculations)
+// (8 bytes instead of 4, more memory, slower calculations)
 #define COLD_THRESHOLD 20.0f
 
 // Logging tag used to identify log output from this file
