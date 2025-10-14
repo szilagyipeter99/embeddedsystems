@@ -2,4 +2,4 @@
 
 1. LightSleepTimer
 2. LightSleepGPIO
-3. DeepSleepExt1
+3. DeepSleepEXT1
