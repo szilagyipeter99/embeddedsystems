@@ -1,5 +1,6 @@
 import serial
 import serial.tools.list_ports
+import threading
 
 def list_devices():
     ports = serial.tools.list_ports.comports()
@@ -23,30 +24,39 @@ def choose_device():
         print("\nInvalid choice.")
         return None
 
+def reader(ser):
+    while True:
+        try:
+            if ser.in_waiting:
+                data = ser.readline().decode(errors="ignore").strip()
+                if data:
+                    print(f"\n< {data}")
+        except serial.SerialException:
+            print("\nSerial connection lost.")
+            break
+
 def terminal(port, baudrate=115200):
     try:
         with serial.Serial(port, baudrate, timeout=1) as ser:
             print(f"\nConnected to {port} @ {baudrate} baud.")
-            print("Type messages and press Enter to send.")
+            print("Type messages and press Enter to send. (CTRL+C to quit)")
+            t = threading.Thread(target=reader, args=(ser,), daemon=True)
+            t.start()
             while True:
-                if ser.in_waiting:
-                    data = ser.readline().decode(errors="ignore").strip()
-                    if data:
-                        print(f"< {data}")
-
-                if ser.in_waiting == 0:
-                    try:
-                        msg = input("> ")
-                        if msg.strip():
-                            ser.write((msg + "\n").encode())
-                    except EOFError:
-                        break
+                try:
+                    msg = input("> ")
+                    if msg.strip():
+                        ser.write((msg + "\n").encode())
+                except EOFError:
+                    break
+                except KeyboardInterrupt:
+                    break
     except serial.SerialException as e:
         print(f"Error: {e}")
 
 if __name__ == "__main__":
     while True:
-        print("\n--- Serial tester (Embedded systems) ---")
+        print("\n--- USB comms test (Embedded systems) ---")
         print("1. Choose device")
         print("2. Quit")
         option = input("\nSelect option: ")
