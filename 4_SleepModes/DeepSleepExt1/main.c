@@ -42,7 +42,7 @@ void blink_led(void *param) {
 
 void handle_sleep(void *param) {
 
-	// To wake up from deep sleep using one or multuple GPIO pins (Ext1), they
+	// To wake up from deep sleep using one or multuple GPIO pins (EXT1), they
 	// have to be configured as RTC IOs (Pins 0-7 on the ESP32C6)
 	rtc_gpio_init(BTN_PIN);
 	rtc_gpio_set_direction(BTN_PIN, RTC_GPIO_MODE_INPUT_ONLY);
@@ -70,8 +70,11 @@ void handle_sleep(void *param) {
 	gptimer_enable(my_timer);
 	gptimer_start(my_timer);
 
-	// Configure Ext1 wakeup
+	// Configure EXT1 wakeup
 	esp_sleep_enable_ext1_wakeup_io((1ULL << BTN_PIN), ESP_EXT1_WAKEUP_ANY_LOW);
+
+	// TODO:
+	// Configure another button so pressing any of the two triggers the wake up
 
 	while (true) {
 		// Send the MCU to sleep if the interrupt was triggered
@@ -79,6 +82,9 @@ void handle_sleep(void *param) {
 			// No need to put flag back to false because its value is lost
 			esp_deep_sleep_start();
 		}
+
+		// Feed the watchdog
+		vTaskDelay(pdMS_TO_TICKS(10));
 	}
 }
 
