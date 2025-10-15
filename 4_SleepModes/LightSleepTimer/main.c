@@ -20,9 +20,10 @@ void blink_led(void *params) {
 }
 
 void handle_sleep(void *params) {
-	while (true) {
+	
+	while (true) {	
 		vTaskDelay(pdMS_TO_TICKS(4000));
-		ESP_LOGI(TAG, "I am awake for now.");
+		ESP_LOGI(TAG, "I am awake for now");
 		vTaskDelay(pdMS_TO_TICKS(2000));
 		ESP_LOGI(TAG, "I am going to sleep...");
 		// Ensure all the data in the buffer is sent down to the UART driver
@@ -39,12 +40,24 @@ void handle_sleep(void *params) {
 		'esp_deep_sleep_start();'
 
 		This would act similar to a restart upon wakeup, so the
-		'I have just woken up.' message is never displayed.
+		'I have just woken up' message is never displayed.
+
+
+		Important note:
+
+		Using deep sleep saves the most power, but every time the device wakes
+		up, it has to go through a full boot process, wasting energy. Running a
+		'Deep-sleep wake stub' lets the MCU jump straight into a critical task
+		and skip most of the boot sequence, therefore it wakes up faster, uses
+		less power, and only initializes the peripherals it actually needs.
+
+		More info about wake stubs:
+		https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32c6/api-guides/deep-sleep-stub.html
 
 		*/
 
 		// This message will only be seen after waking up
-		ESP_LOGI(TAG, "I have just woken up.");
+		ESP_LOGI(TAG, "I have just woken up");
 	}
 }
 
