@@ -16,7 +16,7 @@ void app_main(void) {
 
 	- This example installs an ADC instance for oneshot mode
 	- Info about continuous mode:
-	  https://docs.espressif.com/projects/esp-idf/en/stable/esp32c6/api-reference/peripherals/adc_continuous.html#driver-concepts
+	  https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32c6/api-reference/peripherals/adc_continuous.html#driver-concepts
 
 	*/
 
