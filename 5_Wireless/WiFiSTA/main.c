@@ -109,8 +109,8 @@ static void config_phase() {
 	wifi_config_t my_sta_config = {
 		.sta =
 			{
-				.ssid = "SzPDevNetwork",
-				.password = "tZAPBMIe3Vn",
+				.ssid = "...",
+				.password = "...",
 				// Set weakest accepted auth mode
 				.threshold.authmode = WIFI_AUTH_WPA3_PSK,
 			},
