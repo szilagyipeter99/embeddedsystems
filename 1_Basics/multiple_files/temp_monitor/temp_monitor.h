@@ -1,7 +1,8 @@
 // Include guard to prevent multiple inclusions
-// More modern option: #pragma once
 #ifndef TEMP_MONITOR_H
 #define TEMP_MONITOR_H
+
+// More modern option: #pragma once
 
 float read_temperature();
 
