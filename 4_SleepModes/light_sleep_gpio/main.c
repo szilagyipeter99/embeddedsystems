@@ -73,8 +73,7 @@ void handle_sleep(void *param) {
 	uart_driver_install(UART_NUM_0, 1024, 0, 0, NULL, 0);
 	uart_param_config(UART_NUM_0, &uart_config);
 	// Use the default pins for UART communication
-	uart_set_pin(UART_NUM_0, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE,
-				 UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+	uart_set_pin(UART_NUM_0, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 
 	while (true) {
 		// Wait for a message to arrive
