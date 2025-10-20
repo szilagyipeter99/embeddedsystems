@@ -38,8 +38,7 @@ https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32c6/api-guides/wifi.ht
 
 */
 
-static void event_handler(void *arg, esp_event_base_t base, int32_t id,
-						  void *data) {
+static void event_handler(void *arg, esp_event_base_t base, int32_t id, void *data) {
 	switch (id) {
 	case (WIFI_EVENT_STA_START):
 		ESP_LOGI(TAG, "Wi-Fi started, connecting to AP...");
@@ -132,8 +131,7 @@ static void start_phase() {
 
 	vTaskDelay(pdMS_TO_TICKS(500));
 
-	EventBits_t bits = xEventGroupWaitBits(my_event_group, CONNECTION_BITMASK,
-										   pdFALSE, pdFALSE, portMAX_DELAY);
+	EventBits_t bits = xEventGroupWaitBits(my_event_group, CONNECTION_BITMASK, pdFALSE, pdFALSE, portMAX_DELAY);
 
 	if (bits & CONNECTED_BIT) {
 		ESP_LOGI(TAG, "Connected to Wi-Fi network");
@@ -164,8 +162,7 @@ void app_main(void) {
 
 	esp_err_t ret = nvs_flash_init();
 
-	if (ret == ESP_ERR_NVS_NO_FREE_PAGES ||
-		ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+	if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
 		ESP_ERROR_CHECK(nvs_flash_erase());
 		ret = nvs_flash_init();
 	}
