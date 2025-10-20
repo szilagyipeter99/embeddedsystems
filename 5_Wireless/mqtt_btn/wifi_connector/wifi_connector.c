@@ -11,8 +11,7 @@ static esp_ip4_addr_t ipv4;
 
 static const char *TAG = "Wi-Fi Connector";
 
-static void wifi_event_handler(void *arg, esp_event_base_t base, int32_t id,
-							   void *data) {
+static void wifi_event_handler(void *arg, esp_event_base_t base, int32_t id, void *data) {
 	switch (id) {
 	case (WIFI_EVENT_STA_START):
 		ESP_LOGI(TAG, "Wi-Fi started, connecting to AP...");
@@ -61,10 +60,8 @@ void wifi_init_phase() {
 
 	ESP_ERROR_CHECK(esp_wifi_init(&my_init_config));
 
-	ESP_ERROR_CHECK(
-		esp_event_handler_register(WIFI_EVENT, -1, &wifi_event_handler, NULL));
-	ESP_ERROR_CHECK(
-		esp_event_handler_register(IP_EVENT, -1, &wifi_event_handler, NULL));
+	ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, -1, &wifi_event_handler, NULL));
+	ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, -1, &wifi_event_handler, NULL));
 }
 
 void wifi_config_phase() {
@@ -74,8 +71,8 @@ void wifi_config_phase() {
 	wifi_config_t my_sta_config = {
 		.sta =
 			{
-				.ssid = "SzPDevNetwork",
-				.password = "tZAPBMIe3Vn",
+				.ssid = "...",
+				.password = "...",
 				.threshold.authmode = WIFI_AUTH_WPA3_PSK,
 			},
 	};
@@ -89,9 +86,7 @@ esp_err_t wifi_start_phase() {
 
 	vTaskDelay(pdMS_TO_TICKS(250));
 
-	EventBits_t bits =
-		xEventGroupWaitBits(my_event_group, WIFI_CONNECTION_BITMASK, pdFALSE,
-							pdFALSE, pdMS_TO_TICKS(10000));
+	EventBits_t bits = xEventGroupWaitBits(my_event_group, WIFI_CONNECTION_BITMASK, pdFALSE, pdFALSE, pdMS_TO_TICKS(10000));
 
 	if (bits & WIFI_CONNECTED_BIT) {
 		ESP_LOGI(TAG, "Connected to Wi-Fi network");
