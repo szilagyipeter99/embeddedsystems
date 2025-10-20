@@ -1,5 +1,5 @@
 ### Suggested order of examples:
 
-1. LightSleepTimer
-2. LightSleepGPIO
-3. DeepSleepEXT1
+1. light_sleep_timer
+2. light_sleep_gpio
+3. deep_sleep_ext1
