@@ -1,7 +1,7 @@
 ### Suggested order of examples:
 
-1. ExtInterrupt
-2. TimerInterrupt
-3. PWM (LEDC)
-4. I2C-master & I2C-slave
-5. ADC
+1. external_interrupt
+2. timer_interrupt
+3. pwm (LEDC)
+4. i2c_master & i2c_slave
+5. adc
