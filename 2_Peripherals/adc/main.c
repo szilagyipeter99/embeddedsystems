@@ -46,6 +46,10 @@ void app_main(void) {
 	  1100 mV, but in reality it ranges from 1000 mV to 1200 mV. Using the
 	  calibration driver the output results will be more accurate.
 
+	- During production, Espressif measures the ADC response of each chip
+	  against known reference voltages. These measurements are used to determine
+	  correction parameters, which are then stored in a special OTP memory.
+
 	- ESP32C6 supports the 'ADC_CALI_SCHEME_VER_CURVE_FITTING' scheme.
 
 	- The ADC is sensitive to noise, a bypass capacitor (like a 100 nF ceramic)
