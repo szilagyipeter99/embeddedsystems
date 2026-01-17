@@ -8,7 +8,7 @@ This repository contains the examples created in the Embedded systems practices.
 [Click here](https://docs.espressif.com/projects/espressif-ide/en/latest/downloads.html#downloads)
 
 2. Install ESP-IDF: 
-[Click here](https://docs.espressif.com/projects/espressif-ide/en/latest/installation.html#esp-idf-and-tools-installation)
+[Click here](https://github.com/szilagyipeter99/embeddedsystems/blob/main/VSCODE_ESP_IDF_SETUP.md)
 
 3. Install the CP210x driver:
 [Click here](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)
