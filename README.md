@@ -4,10 +4,10 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Required steps before testing examples:
 
-1. Install the Espressif IDE:
+1. Install VS Code:
 [Click here](https://docs.espressif.com/projects/espressif-ide/en/latest/downloads.html#downloads)
 
-2. Install the ESP-IDF: 
+2. Install ESP-IDF: 
 [Click here](https://docs.espressif.com/projects/espressif-ide/en/latest/installation.html#esp-idf-and-tools-installation)
 
 3. Install the CP210x driver:
