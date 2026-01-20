@@ -15,15 +15,15 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Testing an example in the Espressif IDE:
 
-1. File > New > Espressif IDF Project
-   
-2. Name the project according to the example
-   
-3. Select 'esp32c6' as the target and choose the appropriate serial port
-   
-4. Modify or create the files in the base project according to the example folder
+1. Click on the Espressif logo in VS Code and execute the __New Project Wizard__ command
 
-5. Press 'Launch' to upload the project to the device
+2. Change the default name and path of the project as needed
+
+3. Select __esp32c6__ as the target and __ESP32-C6 chip (via builtin USB-JTAG)__ as the board
+
+4. Choose the __template-app__ template from the __Extension__ category
+
+5. Modify and add the required files to the project
 
 ### Documentations:
 
