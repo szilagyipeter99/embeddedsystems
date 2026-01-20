@@ -37,23 +37,6 @@ This repository contains the examples created in the Embedded systems practices.
 
 All the examples provided in this repository are intended for educational purposes and are designed to be beginner-friendly and easy to understand. As such, they may lack comprehensive error handling, optimization, and other critical aspects required in production-level software.
 
-### Suggested .clangd modifications
-
-Hide parameter hints:
-
-```
-InlayHints:
-  Enabled: No
-```
-
-Hide 'unused-includes' problems:
-
-```
-Diagnostics:
-  Suppress:
-    - unused-includes
-```
-
 ### For your use and inspiration
 
 All materials are designed for Mechatronics Engineering students at the University of Debrecen and were created by Péter Szilágyi. Feel free to share, copy, or modify any part of the materials to your heart's content.
