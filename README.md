@@ -5,7 +5,7 @@ This repository contains the examples created in the Embedded systems practices.
 ### Required steps before testing examples:
 
 1. Install VS Code:
-[Click here](https://docs.espressif.com/projects/espressif-ide/en/latest/downloads.html#downloads)
+[Click here](https://code.visualstudio.com)
 
 2. Install ESP-IDF: 
 [Click here](https://github.com/szilagyipeter99/embeddedsystems/blob/main/VSCODE_ESP_IDF_SETUP.md)
