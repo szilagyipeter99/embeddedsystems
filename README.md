@@ -13,7 +13,7 @@ This repository contains the examples created in the Embedded systems practices.
 3. Install the CP210x driver:
 [Click here](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads)
 
-### Testing an example in the Espressif IDE:
+### Testing an example:
 
 1. Click on the Espressif logo in VS Code and execute the __New Project Wizard__ command
 
