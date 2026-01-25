@@ -14,7 +14,7 @@ UART messages are used to retrieve the last measurement value and to put the MCU
 UART command | Description
 --- | ---
 `GET_VALUE` | Log the last measurement value
-`GO_SLEEP` | Go to deep sleep
+`GO_SLEEP` | Enter deep sleep mode
 
 ## FreeRTOS tasks:
 
@@ -22,6 +22,6 @@ Three FreeRTOS tasks must be created according to the table below. GPIO and UART
 
 Task function | Description
 --- | ---
-`blink_led` | Blink the LED if there is no active measurement
+`blink_led` | Blink the LED when no measurement is active 
 `measure_btn` | Measure how long the button is held down
-`handle_msg` | Read incoming UART messages and handle them
+`handle_msg` | Read and handle incoming UART messages
