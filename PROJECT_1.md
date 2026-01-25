@@ -1,6 +1,6 @@
 # Project 1:
 
-Connect a button and an LED to the development board. Build an ESP-IDF project that uses FreeRTOS to blink the LED and measure how long the button is held down. The LED should blink in a 375 ms interval. When the button is pressed, a measurement starts and the LED must stop blinking. Upon release, the latest measurement has to be saved as an integer and the LED should continue blinking. As previous measurement values are not needed, a single integer variable is sufficient.
+Connect a button and an LED to the development board. Build an ESP-IDF project using FreeRTOS that blinks the LED and measures how long the button is held down. The LED should blink with a 375 ms interval. When the button is pressed, the measurement starts and the LED must stop blinking. Upon release of the button, the latest measurement value has to be saved as an integer, and the LED should resume blinking. Since previous measurement values are not required, a single integer variable is sufficient.
 
 Variable name | Pin number | Direction
 --- | --- | ---
@@ -9,7 +9,7 @@ Variable name | Pin number | Direction
 
 ## UART and Deep sleep:
 
-To retrieve the last measurement value and to send the MCU into deep sleep mode, UART messages are used. Measurements are saved in seconds, where results are not rounded, but floored. For example, more than 5 seconds but less than 6 seconds is saved as 5. In addition, the last measurement value should be available after waking up from deep sleep.
+UART messages are used to retrieve the last measurement value and to put the MCU into deep sleep mode. Measurement values are stored in seconds using floor rounding. For example, a measurement longer than 5 seconds but shorter than 6 seconds is stored as 5. In addition, the last measurement value must remain available after waking up from deep sleep.
 
 UART command | Description
 --- | ---
@@ -18,7 +18,7 @@ UART command | Description
 
 ## FreeRTOS tasks:
 
-Three tasks should be created according to the table below. Configurations for GPIOs or UART should be placed in the corresponding tasks, while the setup of EXT1 wakeup must reside in `app_main()`.
+Three FreeRTOS tasks must be created according to the table below. GPIO and UART configurations should be placed in the corresponding tasks, while the configuration of the EXT1 wakeup source must be implemented in `app_main()`.
 
 Task function | Description
 --- | ---
