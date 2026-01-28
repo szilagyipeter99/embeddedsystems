@@ -1,5 +1,7 @@
 # Exercise:
 
+(Complete after __4_SleepModes__)
+
 Connect a button and an LED to the development board. Build an ESP-IDF project using FreeRTOS that blinks the LED and measures how long the button is held down. The LED should blink with a 375 ms interval. When the button is pressed, the measurement starts and the LED must stop blinking. Upon release of the button, the latest measurement value has to be saved as an integer, and the LED should resume blinking. Since previous measurement values are not required, a single integer variable is sufficient.
 
 Variable name | Pin number | Direction
