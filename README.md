@@ -15,7 +15,7 @@ This repository contains the examples created in the Embedded systems practices.
 
 ### Testing an example:
 
-1. Click on the Espressif logo in VS Code and execute the __New Project Wizard__ command
+1. Click the Espressif logo in VS Code and execute the __New Project Wizard__ command
 
 2. Change the default name and path of the project as needed
 
@@ -25,12 +25,14 @@ This repository contains the examples created in the Embedded systems practices.
 
 5. Modify and add the required files to the project
 
+6. Click the fire icon to execute the __ESP-IDF: Build, Flash and Monitor__ command
+
 ### Documentations:
 
-1. ESP32-C6 DevKitM-1:
+- ESP32-C6 DevKitM-1:
 [Click here](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitm-1/user_guide.html)
 
-2. ESP-IDF (latest): 
+- ESP-IDF (latest): 
 [Click here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/api-reference/index.html)
 
 ### Important note:
