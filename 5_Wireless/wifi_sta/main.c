@@ -96,6 +96,16 @@ static void init_phase() {
 	wifi_init_config_t my_init_config = WIFI_INIT_CONFIG_DEFAULT();
 	esp_wifi_init(&my_init_config);
 
+	/*
+
+	The default netif configuration enables DHCP to obtain an IP adddress
+	
+	A static IP could be set by disabling DHCP, which recuces connection time 
+	and therefore improves battery life in low-power applications following 
+	the wake-connect-transmit-sleep pattern.
+
+	*/
+
 	// To fire on any 'event_id' either -1 or 'ESP_EVENT_ANY_ID' has to be set
 	esp_event_handler_register(WIFI_EVENT, -1, &event_handler, NULL);
 	esp_event_handler_register(IP_EVENT, -1, &event_handler, NULL);
