@@ -7,7 +7,7 @@
 5. Restart the device
 6. Boot into the updated firmware if the update was successful
 
-## Missing features
+## Missing features from the example
 
 ### Version checking:
 Compare the currently running firmware version with the latest available version on the server and skip the update if they are the same.
