@@ -1,4 +1,4 @@
-## Basic HTTP OTA Update Flow
+## Basic HTTP OTA update flow
 
 1. Connect the device to a Wi-Fi network
 2. Request a firmware image from a remote URL
@@ -7,7 +7,7 @@
 5. Restart the device
 6. Boot into the updated firmware if the update was successful
 
-## Potential Improvements
+## Missing features
 
 ### Version checking:
 
