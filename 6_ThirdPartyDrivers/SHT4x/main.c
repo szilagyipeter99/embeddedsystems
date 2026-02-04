@@ -4,12 +4,11 @@
 
 void app_main(void) {
   
-    int16_t error = NO_ERROR;
     sensirion_i2c_hal_init();
     sht4x_init(SHT40_I2C_ADDR_44);
-
     sht4x_soft_reset();
     sensirion_hal_sleep_usec(10000);
+    
     uint32_t serial_number = 0;
     error = sht4x_serial_number(&serial_number);
   
@@ -22,16 +21,14 @@ void app_main(void) {
     
     int32_t temperature_milli_degC = 0;
     int32_t humidity_milli_RH = 0;
-    uint16_t repetition = 0;
-    
-    for (repetition = 0; repetition < 500; repetition++) {
-        sensirion_hal_sleep_usec(20000);
-        error = sht4x_measure_lowest_precision(&temperature_milli_degC, &humidity_milli_RH);
-        if (error != NO_ERROR) {
-            printf("error executing measure_lowest_precision_ticks(): %i\n", error);
-            continue;
-        }
-        printf("Temperature milli °C: %i ", temperature_milli_degC);
-        printf("Humidity milli percent RH: %i\n", humidity_milli_RH);
+
+    error = sht4x_measure_lowest_precision(&temperature_milli_degC, &humidity_milli_RH);
+  
+    if (error != NO_ERROR) {
+        printf("error executing measure_lowest_precision_ticks(): %i\n", error);
+        continue;
     }
+  
+    printf("Temperature milli °C: %i ", temperature_milli_degC);
+    printf("Humidity milli percent RH: %i\n", humidity_milli_RH);
 }
