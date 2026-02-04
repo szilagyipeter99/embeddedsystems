@@ -10,13 +10,16 @@
 ## Missing features
 
 ### Version checking:
-
 Compare the currently running firmware version with the latest available version on the server and skip the update if they are the same.
 
 ### Secure transport (HTTPS):
-
 Use HTTPS with server certificate verification to prevent man-in-the-middle attacks and unauthorized OTA servers.
 
 ### Firmware authenticity verification:
-
 Sign firmware images and verify their signatures on the device to ensure the firmware originates from a trusted source and has not been tampered with.
+
+### Partial image download:
+Download firmware images in chunks instead of a single continuous transfer, reducing memory usage and improving reliability on unstable network connections.
+
+### OTA resumption:
+Resume an interrupted OTA download from the last successfully written offset instead of restarting the download from the beginning after a connection failure or reboot.
