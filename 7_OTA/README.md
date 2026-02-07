@@ -7,6 +7,18 @@
 5. Restart the device
 6. Boot into the updated firmware if the update was successful
 
+## Neccessary `sdkconfig` settings:
+
+- Select __Factory app, two OTA definitions__
+- Tick __Allow HTTP for OTA__
+
+## Steps to upload a new firmware to the OTA server:
+
+1. Click on __Build Project__
+2. Look for the `project-name.bin` file in the __build__ folder
+3. Copy the file to another place where it is safe to rename it
+4. Rename and upload the file to the given URL
+
 ## Missing features from the example
 
 ### Version checking:
