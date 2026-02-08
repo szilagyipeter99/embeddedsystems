@@ -19,7 +19,8 @@
 1. Click on __Build Project__
 2. Look for the `project-name.bin` file in the __build__ folder
 3. Copy the file to another place where it is safe to rename it
-4. Rename and upload the file to the given URL
+4. Rename and ???
+5. ???
 
 ## Missing features from the example
 
