@@ -24,9 +24,6 @@
 
 ## Missing features from the example
 
-### Version checking:
-Compare the currently running firmware version with the latest available version on the server and skip the update if they are the same
-
 ### Secure transport (HTTPS):
 Use HTTPS with server certificate verification to prevent man-in-the-middle attacks and unauthorized OTA servers
 
