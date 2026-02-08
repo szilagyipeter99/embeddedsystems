@@ -1,7 +1,7 @@
 ## Basic HTTP OTA update flow
 
 1. Connect the device to a Wi-Fi network
-2. Visit a remote URL to fetch the latest version number
+2. Visit a remote URL to fetch the latest firmware version number
 3. If the current version is older than the latest, continue
 4. Request a firmware image from another remote URL
 5. Download the .bin file into an available OTA partition
