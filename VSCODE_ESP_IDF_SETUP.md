@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> If you have a space in your Windows username (e.g. C:/John Doe/...), create a new profile!
+> If you have a space in your Windows username (e.g. C:\Users\John Doe\...), create a new profile!
 
 ### ESP-IDF extension installion in Visual Studio Code:
 
