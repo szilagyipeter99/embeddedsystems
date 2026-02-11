@@ -3,7 +3,7 @@
 
 ### ESP-IDF extension installion in Visual Studio Code:
 
-1. Open the __Extensions__ tab and install __ESP-IDF__
+1. Open the __Extensions__ tab and install an older (1.X) version of __ESP-IDF__
 
 2. Click on the Espressif logo on the left and execute the __Configure ESP-IDF Extension__ command
 
