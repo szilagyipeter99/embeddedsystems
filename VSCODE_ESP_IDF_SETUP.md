@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> If you have a space in your Windows username (e.g. C:/John Doe/...), create a new profile!
+
 ### ESP-IDF extension installion in Visual Studio Code:
 
 1. Open the __Extensions__ tab and install __ESP-IDF__
