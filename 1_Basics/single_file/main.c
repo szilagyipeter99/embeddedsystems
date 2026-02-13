@@ -41,9 +41,8 @@ void app_main(void) {
 }
 
 float read_temperature() {
-	float random_temp;
 	// Generate a pseudo-random temperature between 10.00 and 20.99
-	random_temp = esp_random() % 20 + 10 + (esp_random() % 100) / 100.0;
+	float random_temp = esp_random() % 20 + 10 + (esp_random() % 100) / 100.0;
 	return random_temp;
 }
 
