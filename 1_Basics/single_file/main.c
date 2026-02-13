@@ -24,6 +24,8 @@ void app_main(void) {
 	ESP_LOGI(TAG, "Size of int: %d", sizeof(int));
 	ESP_LOGI(TAG, "Size of int8_t: %d", sizeof(int8_t));
 	ESP_LOGI(TAG, "Size of float: %d", sizeof(float));
+	ESP_LOGI(TAG, "Size of 0.5: %d", sizeof(0.5));
+	ESP_LOGI(TAG, "Size of 0.5f: %d", sizeof(0.5f));
 	ESP_LOGI(TAG, "----------------------------");
 
 	// Code inside this 'while' will run indefinitely
@@ -56,6 +58,6 @@ void evaluate_temperature(float temperature, float threshold) {
 	if (temperature >= threshold) {
 		ESP_LOGI(TAG, "Normal temperature.");
 	} else {
-		ESP_LOGI(TAG, "Low temperature.");
+		ESP_LOGW(TAG, "Low temperature.");
 	}
 }
