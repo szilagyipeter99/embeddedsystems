@@ -5,8 +5,7 @@
 static const char *TAG = "Temp. Monitor";
 
 float read_temperature() {
-	float random_temp;
-	random_temp = esp_random() % 20 + 10 + (esp_random() % 100) / 100.0;
+	float random_temp = esp_random() % 20 + 10 + (esp_random() % 100) / 100.0;
 	return random_temp;
 }
 
@@ -18,6 +17,6 @@ void evaluate_temperature(float temperature, float threshold) {
 	if (temperature >= threshold) {
 		ESP_LOGI(TAG, "Normal temperature.");
 	} else {
-		ESP_LOGI(TAG, "Low temperature.");
+		ESP_LOGW(TAG, "Low temperature.");
 	}
 }
