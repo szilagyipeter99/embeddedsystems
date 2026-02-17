@@ -1,6 +1,5 @@
 #include "esp_log.h"
 #include "esp_random.h"
-#include <stdbool.h>
 #include <unistd.h>
 
 static const char *TAG = "Main";
