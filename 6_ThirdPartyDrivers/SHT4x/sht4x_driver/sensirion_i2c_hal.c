@@ -33,28 +33,14 @@
 #include "sensirion_common.h"
 #include "sensirion_config.h"
 
-/*
- * INSTRUCTIONS
- * ============
- *
- * Implement all functions where they are marked as IMPLEMENT.
- * Follow the function specification in the comments.
- */
-
 /**
  * Select the current i2c bus by index.
  * All following i2c operations will be directed at that bus.
- *
- * THE IMPLEMENTATION IS OPTIONAL ON SINGLE-BUS SETUPS (all sensors on the same
- * bus)
  *
  * @param bus_idx   Bus index to select
  * @returns         0 on success, an error code otherwise
  */
 int16_t sensirion_i2c_hal_select_bus(uint8_t bus_idx) {
-    /* TODO:IMPLEMENT or leave empty if all sensors are located on one single
-     * bus
-     */
     return NOT_IMPLEMENTED_ERROR;
 }
 
