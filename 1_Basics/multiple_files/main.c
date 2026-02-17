@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include <unistd.h>
 
 // Include the custom header
