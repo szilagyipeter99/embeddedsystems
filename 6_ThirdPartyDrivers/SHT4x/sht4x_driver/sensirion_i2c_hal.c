@@ -115,4 +115,5 @@ int8_t sensirion_i2c_hal_write(uint8_t address, const uint8_t* data,
  */
 void sensirion_i2c_hal_sleep_usec(uint32_t useconds) {
     /* TODO:IMPLEMENT */
+    vTaskDelay(useconds / 1000);
 }
