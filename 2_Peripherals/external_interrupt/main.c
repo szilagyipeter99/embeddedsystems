@@ -1,6 +1,5 @@
 #include "driver/gpio.h"
 #include "esp_attr.h"
-#include <stdbool.h>
 #include <unistd.h>
 
 #define BTN_1_PIN GPIO_NUM_4
