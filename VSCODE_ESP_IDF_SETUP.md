@@ -9,4 +9,4 @@
 
 3. Choose the __EXPRESS__ setup method
 
-4. Select the __v5.5.2 (release version)__ option and click __Install__
+4. Select the __v5.5.X (release version)__ option and click __Install__
