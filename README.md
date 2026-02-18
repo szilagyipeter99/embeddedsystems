@@ -32,8 +32,8 @@ This repository contains the examples created in the Embedded systems practices.
 - ESP32-C6 DevKitM-1:
 [Click here](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitm-1/user_guide.html)
 
-- ESP-IDF (latest): 
-[Click here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/api-reference/index.html)
+- ESP-IDF (v5.5.3): 
+[Click here](https://docs.espressif.com/projects/esp-idf/en/v5.5.3/esp32c6/api-reference/index.html)
 
 ### Important note:
 
