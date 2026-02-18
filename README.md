@@ -21,7 +21,7 @@ This repository contains the examples created in the Embedded systems practices.
 
 3. Select __esp32c6__ as the target and __ESP32-C6 chip (via builtin USB-JTAG)__ as the board
 
-4. Choose the __template-app__ template from the __Extension__ category
+4. Choose the __sample-project__ template
 
 5. Modify and add the required files to the project
 
