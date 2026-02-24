@@ -43,20 +43,16 @@ void app_main(void) {
 
 	while (true) {
 		// Set the LED brightness to 100%
-		ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 4095);
-		ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+		ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 4095, 0);
 		sleep(1);
 		// Set the LED brightness to ~75%
-		ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 3072);
-		ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+		ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 3072, 0);
 		sleep(1);
 		// Set the LED brightness to ~50%
-		ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 2048);
-		ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+		ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 2048, 0);
 		sleep(1);
 		// Set the LED brightness to ~25%
-		ledc_set_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 1024);
-		ledc_update_duty(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
+		ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0, 1024, 0);
 		sleep(1);
 	}
 }
