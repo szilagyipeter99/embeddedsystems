@@ -53,9 +53,6 @@ void app_main(void) {
 
 	*/
 
-	// Calibration handle
-	adc_cali_handle_t cali_handle = NULL;
-
 	// Configure a Curve Fitting calibration scheme
 	adc_cali_curve_fitting_config_t cali_config = {
 		.unit_id = ADC_UNIT_1,
@@ -63,7 +60,7 @@ void app_main(void) {
 		.atten = ADC_ATTEN_DB_12,
 		.bitwidth = ADC_BITWIDTH_12,
 	};
-
+	adc_cali_handle_t cali_handle;
 	adc_cali_create_scheme_curve_fitting(&cali_config, &cali_handle);
 
 	while (true) {
