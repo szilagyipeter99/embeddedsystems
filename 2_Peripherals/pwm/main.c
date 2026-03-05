@@ -32,7 +32,6 @@ void app_main(void) {
 		.gpio_num = LED_PIN,
 		.speed_mode = LEDC_LOW_SPEED_MODE,
 		.channel = LEDC_CHANNEL_0,
-		.intr_type = LEDC_INTR_DISABLE,
 		.timer_sel = LEDC_TIMER_0,
 		.duty = 0,
 		.hpoint = 0,
