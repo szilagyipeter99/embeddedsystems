@@ -2,7 +2,6 @@
 #include "esp_log.h"
 #include "esp_sleep.h"
 #include "freertos/FreeRTOS.h"
-#include "freertos/projdefs.h"
 #include "freertos/task.h"
 #include <unistd.h>
 
@@ -66,9 +65,6 @@ void app_main(void) {
 	gpio_config_t led_config = {
 		.pin_bit_mask = (1ULL << LED_PIN),
 		.mode = GPIO_MODE_OUTPUT,
-		.pull_up_en = 0,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
 	};
 	gpio_config(&led_config);
 
