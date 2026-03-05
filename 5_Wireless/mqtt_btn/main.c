@@ -16,9 +16,7 @@ static void handle_btn_task(void *params) {
 	gpio_config_t btn_config = {
 		.pin_bit_mask = (1ULL << BTN_PIN),
 		.mode = GPIO_MODE_INPUT,
-		.pull_up_en = 1,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
+		.pull_up_en = true,
 	};
 	ESP_ERROR_CHECK(gpio_config(&btn_config));
 
