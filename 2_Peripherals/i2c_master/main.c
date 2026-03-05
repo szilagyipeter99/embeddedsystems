@@ -11,7 +11,7 @@
 static const char *TAG = "Main";
 
 void app_main(void) {
-
+	
     // Configure a new I2C bus
     i2c_master_bus_config_t bus_config = {
         .i2c_port = I2C_NUM_0,
@@ -19,26 +19,19 @@ void app_main(void) {
         .scl_io_num = SCL_PIN,
         .clk_source = I2C_CLK_SRC_DEFAULT,
         .glitch_ignore_cnt = 7,
-        .intr_priority = 0,
         .flags.enable_internal_pullup = false,
     };
-
-    // Allocate a handle for an I2C bus
     i2c_master_bus_handle_t bus_handle;
-
     i2c_new_master_bus(&bus_config, &bus_handle);
 
-    // Configure a new I2C master
-    i2c_device_config_t master_config = {
+    // Configure a new I2C slave device
+    i2c_device_config_t slave_config = {
         .dev_addr_length = I2C_ADDR_BIT_LEN_7,
         .device_address = SLAVE_ADDR,
-        .scl_speed_hz = 100000,
+        .scl_speed_hz = 100000, // 100 kHz
     };
-
-    // Allocate a handle for an I2C master
-    i2c_master_dev_handle_t master_handle;
-
-    i2c_master_bus_add_device(bus_handle, &master_config, &master_config);
+    i2c_master_dev_handle_t slave_handle;
+    i2c_master_bus_add_device(bus_handle, &slave_config, &slave_handle);
 
     // Initialize a variable and a buffer
     uint16_t some_value;
@@ -50,7 +43,7 @@ void app_main(void) {
         // Divide the 16-bit number into two bytes for transmission
         write_buf[0] = (some_value >> 8) & 0xFF;
         write_buf[1] = some_value & 0xFF;
-        i2c_master_transmit(master_handle, write_buf, 2, 1000); // 1 sec. timeout
+        i2c_master_transmit(slave_handle, write_buf, 2, 1000); // 1 sec. timeout
         ESP_LOGI(TAG, "Data sent: %d", some_value);
         sleep(2);
     }   
