@@ -42,9 +42,6 @@ void app_main(void) {
 	gpio_config_t led_config = {
 		.pin_bit_mask = LED_MASK,
 		.mode = GPIO_MODE_OUTPUT,
-		.pull_up_en = 0,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
 	};
 	gpio_config(&led_config);
 
