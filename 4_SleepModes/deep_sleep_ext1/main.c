@@ -1,3 +1,4 @@
+#include "driver/gpio.h"
 #include "driver/gptimer.h"
 #include "driver/rtc_io.h"
 #include "esp_log.h"
