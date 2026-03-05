@@ -18,7 +18,7 @@ static bool on_data_receive() {
 
 void app_main(void) {
 
-    // Configure a new I2C master
+    // Configure a new I2C slave device
     i2c_slave_config_t slave_config = {
         .i2c_port = I2C_NUM_0,
         .sda_io_num = SDA_PIN,
@@ -26,13 +26,9 @@ void app_main(void) {
         .clk_source = I2C_CLK_SRC_DEFAULT,
         .slave_addr = SLAVE_ADDR,
         .addr_bit_len = I2C_ADDR_BIT_LEN_7,
-        .intr_priority = 0,
         .send_buf_depth = 100,
     };
-
-    // Allocate a handle for an I2C slave
     i2c_slave_dev_handle_t slave_handle;
-
     i2c_new_slave_device(&slave_config, &slave_handle);
 
     // Configure a callback attached to the receive job
