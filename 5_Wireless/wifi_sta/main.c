@@ -15,7 +15,7 @@ developers can just create more bits. The logic does not have to be redesigned.
 
 */
 
-static EventGroupHandle_t my_event_group = NULL;
+static EventGroupHandle_t my_event_group;
 
 #define CONNECTED_BIT BIT0 // = 0x00000001 = 0b00000000000000000000000000000001
 #define FAILED_BIT BIT1	   // = 0x00000002 = 0b00000000000000000000000000000010
