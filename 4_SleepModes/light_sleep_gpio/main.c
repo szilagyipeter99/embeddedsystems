@@ -26,9 +26,6 @@ void blink_led(void *param) {
 	gpio_config_t led_config = {
 		.pin_bit_mask = (1ULL << LED_PIN),
 		.mode = GPIO_MODE_OUTPUT,
-		.pull_up_en = 0,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
 	};
 	gpio_config(&led_config);
 
@@ -45,9 +42,7 @@ void handle_sleep(void *param) {
 	gpio_config_t btn_config = {
 		.pin_bit_mask = (1ULL << BTN_PIN),
 		.mode = GPIO_MODE_INPUT,
-		.pull_up_en = 1,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
+		.pull_up_en = true,
 	};
 	gpio_config(&btn_config);
 
