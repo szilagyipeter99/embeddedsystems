@@ -38,7 +38,7 @@ void app_main(void) {
 	gpio_config_t btn_config = {
 		.pin_bit_mask = BTN_MASK,
 		.mode = GPIO_MODE_INPUT,
-		.pull_up_en = 1,
+		.pull_up_en = true,
 		.intr_type = GPIO_INTR_NEGEDGE,
 	};
 	gpio_config(&btn_config);
