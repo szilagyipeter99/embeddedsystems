@@ -18,25 +18,20 @@ void app_main(void) {
 	- Info about continuous mode:
 	  https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32c6/api-reference/peripherals/adc_continuous.html#driver-concepts
 
-	*/
-
-	// Allocate a handle for the ADC instance
-	adc_oneshot_unit_handle_t adc_handle;
+	*/	
 
 	// Unit configuration for the initialization process
 	adc_oneshot_unit_init_cfg_t init_config = {
 		.unit_id = ADC_UNIT_1,
-		.clk_src = ADC_DIGI_CLK_SRC_DEFAULT,
-		.ulp_mode = ADC_ULP_MODE_DISABLE,
 	};
+	adc_oneshot_unit_handle_t adc_handle;
+	adc_oneshot_new_unit(&init_config, &adc_handle);
 
 	// Channel configuration
 	adc_oneshot_chan_cfg_t input_config = {
 		.atten = ADC_ATTEN_DB_12,	 // 12 dB attenuation (divide signal by ~4)
 		.bitwidth = ADC_BITWIDTH_12, // 12-bit resolution
 	};
-
-	adc_oneshot_new_unit(&init_config, &adc_handle);
 	adc_oneshot_config_channel(adc_handle, MEAS_PIN, &input_config);
 
 	/*
