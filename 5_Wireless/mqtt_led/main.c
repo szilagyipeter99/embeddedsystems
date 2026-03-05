@@ -9,9 +9,9 @@
 
 #define LED_PIN GPIO_NUM_6
 
-EventGroupHandle_t my_event_group = NULL;
+EventGroupHandle_t my_event_group;
 
-QueueHandle_t led_queue = NULL;
+QueueHandle_t led_queue;
 
 static void handle_led_task(void *params) {
 
