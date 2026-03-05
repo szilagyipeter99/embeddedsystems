@@ -20,13 +20,13 @@ static bool IRAM_ATTR on_temp_timer() {
 void app_main(void) {
 
 	// Create and configure a timer
-	gptimer_handle_t my_timer = NULL;
 	gptimer_config_t timer_config = {
 		.clk_src = GPTIMER_CLK_SRC_DEFAULT,
 		.direction = GPTIMER_COUNT_UP,
 		.resolution_hz = 1000000, // 1 Mhz (1 Tick/us)
 		.intr_priority = 0,
 	};
+	gptimer_handle_t my_timer;
 	gptimer_new_timer(&timer_config, &my_timer);
 	// Would be safer this way:
 	// ESP_ERROR_CHECK(gptimer_new_timer(&timer_config, &my_timer));
