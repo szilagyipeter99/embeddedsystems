@@ -26,9 +26,6 @@ void blink_led(void *param) {
 	gpio_config_t led_config = {
 		.pin_bit_mask = (1ULL << LED_PIN),
 		.mode = GPIO_MODE_OUTPUT,
-		.pull_up_en = 0,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
 	};
 	gpio_config(&led_config);
 
@@ -50,13 +47,12 @@ void handle_sleep(void *param) {
 	rtc_gpio_pullup_en(BTN_PIN);
 
 	// Configure a 5 second timer
-	gptimer_handle_t my_timer = NULL;
 	gptimer_config_t timer_config = {
 		.clk_src = GPTIMER_CLK_SRC_DEFAULT,
 		.direction = GPTIMER_COUNT_UP,
 		.resolution_hz = 1000000,
-		.intr_priority = 0,
 	};
+	gptimer_handle_t my_timer;
 	gptimer_new_timer(&timer_config, &my_timer);
 	gptimer_alarm_config_t alarm_config = {
 		.alarm_count = 5000000,
