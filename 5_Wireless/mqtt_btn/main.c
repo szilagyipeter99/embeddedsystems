@@ -9,7 +9,7 @@
 
 #define BTN_PIN GPIO_NUM_4
 
-EventGroupHandle_t my_event_group = NULL;
+EventGroupHandle_t my_event_group;
  
 static void handle_btn_task(void *params) {
 
