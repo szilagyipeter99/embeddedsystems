@@ -39,7 +39,6 @@ void app_main(void) {
 		.pin_bit_mask = BTN_MASK,
 		.mode = GPIO_MODE_INPUT,
 		.pull_up_en = 1,
-		.pull_down_en = 0,
 		.intr_type = GPIO_INTR_NEGEDGE,
 	};
 	gpio_config(&btn_config);
@@ -48,9 +47,6 @@ void app_main(void) {
 	gpio_config_t led_config = {
 		.pin_bit_mask = LED_MASK,
 		.mode = GPIO_MODE_OUTPUT,
-		.pull_up_en = 0,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
 	};
 	gpio_config(&led_config);
 
@@ -101,7 +97,7 @@ Improvements:
   operations while it is waiting. A real-time operating system will solve this
   problem with its 'vTaskDelay()' function instead of 'sleep()' or 'usleep()'.
 
-- There are two separate ISRs for the two buttons, they should be handled using
+- There are two separate ISRs for the two buttons. They should be handled using
   one unified interrupt with an input argument for the identifiers of the
   buttons. Inside the ISR there should be a FIFO queue collecting the events.
 
