@@ -3,7 +3,7 @@
 
 #include "app_defs.h"
 
-static esp_mqtt_client_handle_t my_mqtt_client = NULL;
+static esp_mqtt_client_handle_t my_mqtt_client;
 
 static bool led_state = false;
 
