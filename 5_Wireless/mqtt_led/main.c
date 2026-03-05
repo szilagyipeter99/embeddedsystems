@@ -18,9 +18,6 @@ static void handle_led_task(void *params) {
 	gpio_config_t led_config = {
 		.pin_bit_mask = (1ULL << LED_PIN),
 		.mode = GPIO_MODE_OUTPUT,
-		.pull_up_en = 0,
-		.pull_down_en = 0,
-		.intr_type = GPIO_INTR_DISABLE,
 	};
 	ESP_ERROR_CHECK(gpio_config(&led_config));
 
