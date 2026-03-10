@@ -21,11 +21,11 @@ static void handle_led_task(void *params) {
 	};
 	ESP_ERROR_CHECK(gpio_config(&led_config));
 
-	bool led_state = false;
+	bool new_led_state = false;
 
 	while (true) {
-		xQueueReceive(led_queue, &led_state, portMAX_DELAY);
-		gpio_set_level(LED_PIN, led_state);
+		xQueueReceive(led_queue, &new_led_state, portMAX_DELAY);
+		gpio_set_level(LED_PIN, new_led_state);
 	}
 }
 
