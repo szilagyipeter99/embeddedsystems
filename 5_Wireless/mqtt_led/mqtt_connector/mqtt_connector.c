@@ -70,7 +70,7 @@ esp_err_t mqtt_init() {
 
 esp_err_t mqtt_subscribe_to_led() {
 
-	esp_mqtt_client_subscribe(my_mqtt_client, "my_home/living_room/led7/set", 1);
+	esp_mqtt_client_subscribe(my_mqtt_client, "my_home/living_room/led7", 1);
 
 	EventBits_t bits = xEventGroupWaitBits(my_event_group, MQTT_SUBSCRIBED_BIT, pdFALSE, pdFALSE, pdMS_TO_TICKS(5000));
 
@@ -86,14 +86,11 @@ static void mqtt_handle_received_data(void *data) {
 
 	esp_mqtt_event_handle_t event = data;
 
-	if (strncmp(event->topic, "my_home/living_room/led7/set", event->topic_len) == 0) {
+	if (strncmp(event->topic, "my_home/living_room/led7", event->topic_len) == 0) {
 
-		if (strncmp(event->data, "ON", event->data_len) == 0) {
-			led_state = true;
-			ESP_LOGI(TAG, "LED light turned ON");
-		} else if (strncmp(event->data, "OFF", event->data_len) == 0) {
-			led_state = false;
-			ESP_LOGI(TAG, "LED light turned OFF");
+		if (strncmp(event->data, "SET", event->data_len) == 0) {
+			led_state = !led_state;
+			ESP_LOGI(TAG, "LED light turned ON/OFF");
 		} else {
 			ESP_LOGE(TAG, "Invalid event data");
 			return;
