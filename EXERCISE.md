@@ -7,6 +7,7 @@ Connect a button and an LED to the development board. Build an ESP-IDF project u
 Variable name | Pin number | Direction
 --- | --- | ---
 `READ_BTN` | 4 | Input
+`WAKEUP_BTN` | 5 | Input
 `LED` | 6 | Output
 
 ## UART and Deep sleep:
