@@ -46,7 +46,7 @@ def terminal(port, baudrate=115200):
                 try:
                     msg = input("> ")
                     if msg.strip():
-                        ser.write((msg + "\n").encode())
+                        ser.write((msg).encode())
                 except EOFError:
                     break
                 except KeyboardInterrupt:
