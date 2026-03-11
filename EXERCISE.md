@@ -2,7 +2,7 @@
 
 (Complete after __4_SleepModes__)
 
-Connect two buttons and an LED to the development board. Build an ESP-IDF project using FreeRTOS that blinks the LED and measures how long `READ_BTN` button is held down. The LED should blink with a 375 ms interval. When the button is pressed, the measurement starts and the LED must stop blinking. Upon release of the button, the latest measurement value has to be saved as an integer, and the LED should resume blinking. Since previous measurement values are not required, a single integer variable is sufficient.
+Connect two buttons and an LED to the development board. Build an ESP-IDF project using FreeRTOS that blinks the LED and measures how long the `READ_BTN` button is held down. The LED should blink with a 375 ms interval. When the button is pressed, the measurement starts and the LED must stop blinking. Upon release of the button, the latest measurement value has to be saved as an integer, and the LED should resume blinking. Since previous measurement values are not required, a single integer variable is sufficient.
 
 Variable name | Pin number | Direction
 --- | --- | ---
@@ -12,7 +12,7 @@ Variable name | Pin number | Direction
 
 ## UART and Deep sleep:
 
-UART messages are used to retrieve the last measurement value and to put the MCU into deep sleep mode. Measurement values are stored in seconds using floor rounding. For example, a measurement longer than 5 seconds but shorter than 6 seconds is stored as 5. To wake up the MCU, use EXT1 with `WAKEUP_BTN`. In addition, the last measurement value must remain available after waking up from deep sleep.
+UART messages are used to retrieve the last measurement value and to put the MCU into deep sleep mode. Measurement values are stored in seconds using floor rounding. For example, a measurement longer than 5 seconds but shorter than 6 seconds is stored as 5. To wake up the MCU, use the `WAKEUP_BTN` with EXT1. In addition, the last measurement value must remain available after waking up from deep sleep.
 
 UART command | Description
 --- | ---
