@@ -10,7 +10,7 @@
 #define LED_PIN GPIO_NUM_6
 
 #define BUFFER_SIZE 50
-#define SLEEP_MSG "GO_SLEEP\r"
+#define SLEEP_MSG "GO_SLEEP"
 
 // Empty array for incoming (max. 50 character long) messages
 static char msg_buffer[BUFFER_SIZE];
