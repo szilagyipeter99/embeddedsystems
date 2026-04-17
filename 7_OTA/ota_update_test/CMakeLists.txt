@@ -3,4 +3,4 @@ idf_component_register(
     INCLUDE_DIRS .
 )
 
-set(PROJECT_VER "1.0.0")
+set(PROJECT_VER "1.0.0") # MAJOR.MINOR.PATCH
