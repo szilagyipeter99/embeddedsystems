@@ -125,7 +125,7 @@ static const char* get_running_version() {
     return desc->version;
 }
 
-static void do_firmware_upgrade() {
+static void do_firmware_update() {
 	
     esp_http_client_config_t config = {
         .url = ".../firmware.bin",
@@ -166,7 +166,9 @@ void app_main(void) {
 	config_phase();
 	start_phase();
 
-	do_firmware_upgrade();
+	if (is_firmware_update_available()) {
+    	do_firmware_update();
+	}
 
 	uint8_t some_value = 0;
 
