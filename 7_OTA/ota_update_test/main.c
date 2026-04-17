@@ -119,6 +119,12 @@ static void start_phase() {
 	}
 }
 
+static const char* get_running_version() {
+	
+    esp_app_desc_t *desc = esp_app_get_description();
+    return desc->version;
+}
+
 static void do_firmware_upgrade() {
 	
     esp_http_client_config_t config = {
