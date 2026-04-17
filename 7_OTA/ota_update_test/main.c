@@ -125,6 +125,46 @@ static const char* get_running_version() {
     return desc->version;
 }
 
+static bool is_update_available(void) {
+    
+	char buffer[32] = {0};
+
+    esp_http_client_config_t config = {
+        .url = "http://.../version.txt",
+        .event_handler = http_event_handler,
+    };
+
+    esp_http_client_handle_t ver_check_client = esp_http_client_init(&config);
+
+    if (esp_http_client_perform(ver_check_client) != ESP_OK)
+    {
+        ESP_LOGE(TAG, "Failed to fetch version file");
+        esp_http_client_cleanup(ver_check_client);
+        return false;
+    }
+
+    int32_t len = esp_http_client_read_response(ver_check_client, buffer, sizeof(buffer));
+    esp_http_client_cleanup(client);
+
+    if (len <= 0) {
+        ESP_LOGE(TAG, "Empty version response");
+        return false;
+    }
+
+    buffer[len] = '\0';
+
+    const char *current = get_running_version();
+
+	// If versions do not match, perform an update
+	// (Semantic version comparison should be implemented)
+    if (strcmp(buffer, current) != 0) {
+        ESP_LOGI(TAG, "New firmware detected!");
+        return true;
+    }
+
+    return false;
+}
+
 static void do_firmware_update() {
 	
     esp_http_client_config_t config = {
