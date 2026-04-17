@@ -21,6 +21,7 @@ static const char *TAG = "Main";
 
 static void event_handler(void *arg, esp_event_base_t base, int32_t id, void *data) {
 	switch (id) {
+	// WIFI events
 	case (WIFI_EVENT_STA_START):
 		ESP_LOGI(TAG, "Wi-Fi started, connecting to AP...");
 		esp_wifi_connect();
@@ -46,6 +47,25 @@ static void event_handler(void *arg, esp_event_base_t base, int32_t id, void *da
 		ESP_LOGI(TAG, "Got IPv4: " IPSTR, IP2STR(&ipv4));
 		retry_cntr = 0;
 		xEventGroupSetBits(my_event_group, CONNECTED_BIT);
+		break;
+	// HTTPS OTA events
+	case ESP_HTTPS_OTA_START:
+		ESP_LOGI(TAG, "OTA update started");
+		break;
+	case ESP_HTTPS_OTA_CONNECTED:
+		ESP_LOGI(TAG, "Connected to OTA update server");
+		break;
+	case ESP_HTTPS_OTA_WRITE_FLASH:
+		ESP_LOGD(TAG, "Writing to flash: %d", *(int *)event_data);
+		break;
+	case ESP_HTTPS_OTA_UPDATE_BOOT_PARTITION:
+		ESP_LOGI(TAG, "Boot partition updated, next partition: %d", *(esp_partition_subtype_t *)event_data);
+		break;
+	case ESP_HTTPS_OTA_FINISH:
+		ESP_LOGI(TAG, "OTA update finished");
+		break;
+	case ESP_HTTPS_OTA_ABORT:
+		ESP_LOGI(TAG, "OTA update aborted");
 		break;
 	default:
 		ESP_LOGI(TAG, "Unhandled event occured.");
