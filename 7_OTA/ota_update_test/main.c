@@ -122,12 +122,17 @@ static void start_phase() {
 static void do_firmware_upgrade() {
 	
     esp_http_client_config_t config = {
-        .url = "http://192.168.1.51:8000/teststuff.bin",
+        .url = "http://192.168.1.51:8000/new_firmware.bin",
     };
+	
     esp_https_ota_config_t ota_config = {
         .http_config = &config,
     };
+
+	esp_event_handler_register(ESP_HTTPS_OTA_EVENT, -1, &event_handler, NULL);
+	
     esp_err_t ret = esp_https_ota(&ota_config);
+	
     if (ret == ESP_OK) {
 		ESP_LOGI(TAG, "Updated firmware successfully");
         esp_restart();
