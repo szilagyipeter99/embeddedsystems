@@ -94,8 +94,8 @@ static void config_phase() {
 	wifi_config_t my_sta_config = {
 		.sta =
 			{
-				.ssid = "SzPDevNetwork",
-				.password = "tZAPBMIe3Vn",
+				.ssid = "...",
+				.password = "...",
 				.threshold.authmode = WIFI_AUTH_WPA3_PSK,
 			},
 	};
@@ -122,7 +122,7 @@ static void start_phase() {
 static void do_firmware_upgrade() {
 	
     esp_http_client_config_t config = {
-        .url = "http://192.168.1.51:8000/new_firmware.bin",
+        .url = ".../firmware.bin",
     };
 	
     esp_https_ota_config_t ota_config = {
