@@ -120,6 +120,10 @@ static void start_phase() {
 	}
 }
 
+static esp_err_t http_event_handler(esp_http_client_event_t *evt) {
+    return ESP_OK;
+}
+
 static const char* get_running_version() {
 	
     esp_app_desc_t *desc = esp_app_get_description();
