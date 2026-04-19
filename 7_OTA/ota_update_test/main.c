@@ -130,7 +130,7 @@ static bool is_update_available(void) {
 	char buffer[32] = {0};
 
     esp_http_client_config_t config = {
-        .url = "http://.../version.txt",
+        .url = "http://petermqtt.local/latest_version",
         .event_handler = http_event_handler,
     };
 
@@ -168,7 +168,7 @@ static bool is_update_available(void) {
 static void do_firmware_update() {
 	
     esp_http_client_config_t config = {
-        .url = ".../firmware.bin",
+        .url = "http://petermqtt.local/latest_firmware.bin",
     };
 	
     esp_https_ota_config_t ota_config = {
