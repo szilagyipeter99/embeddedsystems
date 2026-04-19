@@ -3,6 +3,7 @@
 #include "nvs_flash.h"
 
 #include "esp_https_ota.h"
+#include "esp_http_client.h"
 #include "esp_app_desc.h"
 
 static EventGroupHandle_t my_event_group = NULL;
