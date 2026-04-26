@@ -49,7 +49,7 @@ void app_main(void) {
 
 	- The ADC is sensitive to noise, a bypass capacitor (like a 100 nF ceramic)
 	  may need to be connected to the ADC input to minimize noise. To further
-	  mitigate the effects of noise multisampling may be used.
+	  mitigate the effects of noise, multisampling may be used.
 
 	*/
 
