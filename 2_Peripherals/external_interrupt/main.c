@@ -28,7 +28,6 @@ volatile bool second_blink = 0;
 
 // IRAM_ATTR flag:
 // Tells the compiler and linker to place the ISR in RAM instead of flash memory
-// Ensures faster access, prevents optimizations from the compiler
 static void IRAM_ATTR handle_first_isr() { first_blink = 1; }
 static void IRAM_ATTR handle_second_isr() { second_blink = 1; }
 
